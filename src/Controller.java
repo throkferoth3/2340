@@ -10,17 +10,25 @@ import javafx.stage.Stage;
 public class Controller extends Application{
     private static Stage window;
     private static Scene welcomeScreen, configScreen, gameScreen;
+
+    private static int difficulty;
+    private static String name;
     /**
      * Start method that sets up the game when launched.
      *
      * @param primaryStage The window of the game.
      */
     public void start(Stage primaryStage) {
+        difficulty = -1;
+        name = "";
+
         window = primaryStage;
         InitialConfig initialConfig = new InitialConfig();
         configScreen = initialConfig.getScene();
         WelcomeScreen welcomeScreenTemp = new WelcomeScreen();
         welcomeScreen = welcomeScreenTemp.getScene();
+        MainGame mainGame = new MainGame();
+        gameScreen = mainGame.getScene();
 
         window.setTitle("Game Title");
         window.setScene(welcomeScreen);
@@ -49,6 +57,41 @@ public class Controller extends Application{
      */
     public static void switchToWelcome() {
         window.setScene(welcomeScreen);
+    }
+
+    /**
+     * Changes scene to the main game
+     *
+     */
+    public static void switchToGame() {
+        window.setScene(gameScreen);
+    }
+    /**
+     * Mutator method for name.
+     */
+    public static void setName(String newName) {
+        name = newName;
+    }
+    /**
+     * Mutator method for difficulty.
+     */
+    public static void setDifficulty(int newDifficulty) {
+        difficulty = newDifficulty;
+    }
+
+    /**
+     * Accessor method for name.
+     * @return the player's name
+     */
+    public static String getName() {
+        return name;
+    }
+    /**
+     * Accessor method for difficulty.
+     * @return the current difficulty.
+     */
+    public static int getDifficulty() {
+        return difficulty;
     }
     /**
      * Main method that launches the game.
