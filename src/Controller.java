@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 public class Controller extends Application{
     private static Stage window;
     private static Scene welcomeScreen, configScreen, gameScreen;
-
     /**
      * Start method that sets up the game when launched.
      *
@@ -18,8 +17,11 @@ public class Controller extends Application{
      */
     public void start(Stage primaryStage) {
         window = primaryStage;
+        InitialConfig initialConfig = new InitialConfig();
+        configScreen = initialConfig.getScene();
         WelcomeScreen welcomeScreenTemp = new WelcomeScreen();
         welcomeScreen = welcomeScreenTemp.getScene();
+
         window.setTitle("Game Title");
         window.setScene(welcomeScreen);
         window.show();
@@ -37,14 +39,17 @@ public class Controller extends Application{
      * Changes scene to the configuration screen.
      *
      */
-    public static void startButton() {
-        InitialConfig configTemp = new InitialConfig();
-        configTemp.initialize();
-        configScreen = configTemp.getScene();
+    public static void switchToConfig() {
         window.setScene(configScreen);
-        window.show();
     }
 
+    /**
+     * Changes scene to the welcome screen.
+     *
+     */
+    public static void switchToWelcome() {
+        window.setScene(welcomeScreen);
+    }
     /**
      * Main method that launches the game.
      *

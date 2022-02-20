@@ -41,7 +41,7 @@ public class InitialConfig {
     Scene scene = new Scene(mainPane, 500, 300);
 
 
-    public void InitialConfig() {
+    public InitialConfig() {
         mainPane.getChildren().clear();
         topPane.getChildren().clear();
         bottomPane.getChildren().clear();
@@ -119,7 +119,7 @@ public class InitialConfig {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //TODO: Previous screen functionality
+                Controller.switchToWelcome();
             }
         });
 
@@ -140,90 +140,6 @@ public class InitialConfig {
         return true;
     }
 
-    public void initialize() {
-        mainPane.getChildren().clear();
-        topPane.getChildren().clear();
-        bottomPane.getChildren().clear();
-        centerPane.getChildren().clear();
-
-        mainPane.setTop(topPane);
-        mainPane.setBottom(bottomPane);
-
-        centerPane.setHgap(spacing);
-        centerPane.setVgap(spacing);
-        centerPane.setPadding(new Insets(spacing, spacing, spacing, spacing));
-        mainPane.setCenter(centerPane);
-
-        nameText = new Text("Name: ");
-        nameTextBox = new TextField();
-        nameTextBox.setPromptText("Enter your name here");
-        nameTextBox.setFocusTraversable(false);
-        nameEnter = new Button("Enter");
-        nameEnter.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                name = nameTextBox.getText();
-                if (isNameValid(name)) {
-                    nameText.setText("Name: " + name);
-                    invalidName.setText("");
-                }
-                else {
-                    invalidName.setText("Invalid name.");
-                }
-            }
-        });
-        topPane.getChildren().addAll(nameText, nameTextBox, nameEnter, invalidName);
-
-        easyButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                difficulty = 0;
-                difficultyText.setText("Difficulty: Easy");
-            }
-        });
-        normalButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                difficulty = 1;
-                difficultyText.setText("Difficulty: Normal");
-            }
-        });
-        hardButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                difficulty = 2;
-                difficultyText.setText("Difficulty: Hard");
-            }
-        });
-
-        centerPane.setConstraints(easyButton, 0, 5);
-        centerPane.setConstraints(normalButton, 10, 5);
-        centerPane.setConstraints(hardButton, 20, 5);
-        centerPane.setConstraints(difficultyText, 10, 10);
-
-        centerPane.getChildren().addAll(easyButton, normalButton, hardButton, difficultyText);
-
-        continueButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                if (isNameValid(name) && difficulty != -1) {
-                    failContinue.setText("");
-                    //TODO: Next screen functionality
-                }
-                else {
-                    failContinue.setText("You must enter a name and select a difficulty.");
-                }
-            }
-        });
-        backButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                //TODO: Previous screen functionality
-            }
-        });
-
-        bottomPane.getChildren().addAll(continueButton, backButton, failContinue);
-    }
     public Scene getScene() {
         return scene;
     }

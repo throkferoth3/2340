@@ -46,7 +46,7 @@ public class WelcomeScreen {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Controller.startButton();
+                Controller.switchToConfig();
             }
         });
     }
