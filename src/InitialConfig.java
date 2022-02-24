@@ -38,7 +38,7 @@ public class InitialConfig {
     private Button backButton = new Button("Back");
     private Text failContinue = new Text("");
 
-    Scene scene = new Scene(mainPane, 500, 300);
+    private Scene scene = new Scene(mainPane, 500, 300);
 
 
     public InitialConfig() {
@@ -66,10 +66,9 @@ public class InitialConfig {
                 name = nameTextBox.getText();
                 if (isNameValid(name)) {
                     nameText.setText("Name: " + name);
-                    Controller.setName(name);
+                    PlayerInfo.setName(name);
                     invalidName.setText("");
-                }
-                else {
+                } else {
                     invalidName.setText("Invalid name.");
                 }
             }
@@ -81,7 +80,7 @@ public class InitialConfig {
             public void handle(ActionEvent e) {
                 difficulty = 0;
                 difficultyText.setText("Difficulty: Easy");
-                Controller.setDifficulty(0);
+                PlayerInfo.setDifficulty(0);
             }
         });
         normalButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -89,7 +88,7 @@ public class InitialConfig {
             public void handle(ActionEvent e) {
                 difficulty = 1;
                 difficultyText.setText("Difficulty: Normal");
-                Controller.setDifficulty(1);
+                PlayerInfo.setDifficulty(1);
             }
         });
         hardButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -97,7 +96,7 @@ public class InitialConfig {
             public void handle(ActionEvent e) {
                 difficulty = 2;
                 difficultyText.setText("Difficulty: Hard");
-                Controller.setDifficulty(2);
+                PlayerInfo.setDifficulty(2);
             }
         });
 
@@ -115,8 +114,7 @@ public class InitialConfig {
                     failContinue.setText("");
                     Controller.switchToGame();
                     MainGame.initialize();
-                }
-                else {
+                } else {
                     failContinue.setText("You must enter a name and select a difficulty.");
                 }
             }
@@ -148,6 +146,6 @@ public class InitialConfig {
     public Scene getScene() {
         return scene;
     }
-    public static void main(String[] args){
+    public static void main(String[] args) {
     }
 }

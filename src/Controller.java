@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -7,9 +6,11 @@ import javafx.stage.Stage;
  * Controller class that starts the tower defense game when run.
  *
  */
-public class Controller extends Application{
+public class Controller extends Application {
     private static Stage window;
-    private static Scene welcomeScreen, configScreen, gameScreen;
+    private static Scene welcomeScreen;
+    private static Scene configScreen;
+    private static Scene gameScreen;
 
     private static int difficulty;
     private static String name;
@@ -65,33 +66,6 @@ public class Controller extends Application{
      */
     public static void switchToGame() {
         window.setScene(gameScreen);
-    }
-    /**
-     * Mutator method for name.
-     */
-    public static void setName(String newName) {
-        name = newName;
-    }
-    /**
-     * Mutator method for difficulty.
-     */
-    public static void setDifficulty(int newDifficulty) {
-        difficulty = newDifficulty;
-    }
-
-    /**
-     * Accessor method for name.
-     * @return the player's name
-     */
-    public static String getName() {
-        return name;
-    }
-    /**
-     * Accessor method for difficulty.
-     * @return the current difficulty.
-     */
-    public static int getDifficulty() {
-        return difficulty;
     }
     /**
      * Main method that launches the game.
