@@ -41,6 +41,9 @@ public class PlayerInfo {
         ownedTowers.add(t);
     }
 
+    public static ArrayList<Tower> getTowerList() {
+        return ownedTowers;
+    }
     public static void initHealthAndMoney() {
         switch (PlayerInfo.getDifficulty()) {
             case 0:
