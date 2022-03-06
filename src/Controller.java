@@ -14,8 +14,8 @@ public class Controller extends Application {
 
     private static int difficulty;
     private static String name;
-    private static final int SCREEN_HEIGHT = 300;
-    private static final int SCREEN_WIDTH = 500;
+    private static final int SCREEN_HEIGHT = 600;
+    private static final int SCREEN_WIDTH = 1000;
     /**
      * Start method that sets up the game when launched.
      *
