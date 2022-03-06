@@ -41,6 +41,25 @@ public class PlayerInfo {
         ownedTowers.add(t);
     }
 
+    public static void initHealthAndMoney() {
+        switch (PlayerInfo.getDifficulty()) {
+            case 0:
+                PlayerInfo.setHealth(20);
+                PlayerInfo.setMoney(100);
+                break;
+            case 1:
+                PlayerInfo.setHealth(15);
+                PlayerInfo.setMoney(75);
+                break;
+            case 2:
+                PlayerInfo.setHealth(10);
+                PlayerInfo.setMoney(50);
+                break;
+            default:
+                break;
+        }
+    }
+
     public static boolean validPlacement(double X, double Y) {
         if (ownedTowers == null) {
             return true;

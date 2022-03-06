@@ -39,22 +39,7 @@ public class MainGame {
     private Scene scene = new Scene(mainPane, Controller.getScreenWidth(), Controller.getScreenHeight());
 
     public static void initialize() {
-        switch (PlayerInfo.getDifficulty()) {
-        case 0:
-            PlayerInfo.setHealth(20);
-            PlayerInfo.setMoney(100);
-            break;
-        case 1:
-            PlayerInfo.setHealth(15);
-            PlayerInfo.setMoney(75);
-            break;
-        case 2:
-            PlayerInfo.setHealth(10);
-            PlayerInfo.setMoney(50);
-            break;
-        default:
-            break;
-        }
+        PlayerInfo.initHealthAndMoney();
         moneyText = new Text("Money: " + PlayerInfo.getMoney() + " ");
         healthText = new Text("Health: " + PlayerInfo.getHealth());
         playerInfoDisplay.getChildren().addAll(moneyText, healthText);
