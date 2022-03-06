@@ -1,19 +1,20 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public class Path {
-    private int width = 500;
-    private int height = 50;
+    private int width = Controller.getScreenWidth() - 25;
+    private int height = Controller.getScreenHeight() / 10;
     private Rectangle display;
+    private int buffer = 15;
     public Path() {
-        display = new Rectangle(-100, Controller.getScreenHeight() / 2 - 100, width, height);
+        display = new Rectangle(-100, Controller.getScreenHeight() / 2d - 100, width, height);
         display.setFill(Color.BURLYWOOD);
     }
     public Rectangle getDisplay() {
         return display;
     }
-    public boolean isWithin(int x, int y) {
-        if (y >= Controller.getScreenHeight() / 2 - 100 || y <= Controller.getScreenHeight() / 2 - 100 + height ||
-                x >= -100 || x <= -100 + width) {
+    public boolean isWithin(double x, double y) {
+        if ((y >= Controller.getScreenHeight() / 2d - 100 - buffer && y <= Controller.getScreenHeight() / 2d - 100 + height + buffer) &&
+                (x >= -100 - buffer && x <= -100 + width + buffer)) {
             return true;
         }
         return false;

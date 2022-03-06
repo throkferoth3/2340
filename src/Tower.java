@@ -1,40 +1,52 @@
+import javafx.scene.shape.*;
 abstract class Tower {
 
-    private int cost = 0;
+    protected static int[] cost;
+    protected static int towerIndicator;
+    protected Shape display;
+    protected int width = 30;
+    protected int height = 30;
+    protected double posX;
+    protected double posY;
 
-    /**
-     * Constructor that sets all towers to a default cost based on difficulty.
-     * If you want to make the different towers have different costs, make this
-     * class an interface and put implementation details in the tower subclasses.
-     *
-     * @param difficulty difficulty of game.
-     */
-    public Tower(int difficulty) {
-        switch (difficulty) { // switch statement from comment
-            case 0:
-                cost = 15;
-                break;
-            case 1:
-                cost = 20;
-                break;
-            case 2:
-                cost = 25;
-                break;
-            default:
-                break;
-        }
+    public Tower(Double X, Double Y) {
+        posY = Y - height / 2d;
+        posX = X - width / 2d;
     }
 
-    public boolean buyTower() {
-        if (PlayerInfo.getMoney() >= cost) {
-            PlayerInfo.setMoney(PlayerInfo.getMoney() - cost);
+    public Shape getDisplay() {
+        return display;
+    }
+
+    public static int getCost() {
+        return cost[PlayerInfo.getDifficulty()];
+    }
+
+    public static int getTowerIndicator() {
+        return towerIndicator;
+    }
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
+    public double getPosX() {
+        return posX;
+    }
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosition(double X, double Y) {
+        posX = X;
+        posY = Y;
+    }
+    public boolean isWithin(double X, double Y) {
+
+        if (X >= posX - width && X <= posX + width && Y <= posY + height && Y >= posY - height) {
             return true;
         }
         return false;
     }
-
-    public int getCost() {
-        return cost;
-    }
-
 }

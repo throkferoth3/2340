@@ -17,8 +17,8 @@ public class WelcomeScreen {
     private BorderPane pane = new BorderPane();
     private Text welcomeBanner = new Text("Team 104 Tower Defense Game");
     private HBox topPane = new HBox();
-    private Button startButton = new Button("start");
-    private Button quitButton = new Button("quit");
+    private Button startButton = new Button("Start");
+    private Button quitButton = new Button("Quit");
     private HBox centerPane = new HBox(100);
     private Scene scene = new Scene(pane, Controller.getScreenWidth(), Controller.getScreenHeight());
 

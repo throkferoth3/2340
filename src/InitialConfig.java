@@ -1,3 +1,4 @@
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
@@ -54,6 +55,10 @@ public class InitialConfig {
         centerPane.setVgap(spacing);
         centerPane.setPadding(new Insets(spacing, spacing, spacing, spacing));
         mainPane.setCenter(centerPane);
+
+        topPane.setAlignment(Pos.CENTER);
+        centerPane.setAlignment(Pos.CENTER);
+        bottomPane.setAlignment(Pos.CENTER);
 
         nameText = new Text("Name: ");
         nameTextBox = new TextField();
@@ -127,13 +132,6 @@ public class InitialConfig {
         });
 
         bottomPane.getChildren().addAll(continueButton, backButton, failContinue);
-    }
-
-    public String getName() {
-        return name;
-    }
-    public int getDifficulty() {
-        return difficulty;
     }
 
     private Boolean isNameValid(String name) {
