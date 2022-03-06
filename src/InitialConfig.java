@@ -38,7 +38,7 @@ public class InitialConfig {
     private Button backButton = new Button("Back");
     private Text failContinue = new Text("");
 
-    private Scene scene = new Scene(mainPane, 500, 300);
+    private Scene scene = new Scene(mainPane, Controller.getScreenWidth(), Controller.getScreenHeight());
 
 
     public InitialConfig() {

@@ -14,6 +14,8 @@ public class Controller extends Application {
 
     private static int difficulty;
     private static String name;
+    private static final int SCREEN_HEIGHT = 300;
+    private static final int SCREEN_WIDTH = 500;
     /**
      * Start method that sets up the game when launched.
      *
@@ -66,6 +68,12 @@ public class Controller extends Application {
      */
     public static void switchToGame() {
         window.setScene(gameScreen);
+    }
+    public static int getScreenHeight() {
+        return SCREEN_HEIGHT;
+    }
+    public static int getScreenWidth() {
+        return SCREEN_WIDTH;
     }
     /**
      * Main method that launches the game.

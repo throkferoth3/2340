@@ -20,7 +20,7 @@ public class WelcomeScreen {
     private Button startButton = new Button("start");
     private Button quitButton = new Button("quit");
     private HBox centerPane = new HBox(100);
-    private Scene scene = new Scene(pane, 500, 300);
+    private Scene scene = new Scene(pane, Controller.getScreenWidth(), Controller.getScreenHeight());
 
     /**
      * Constructor that puts together panes and buttons onto the screen

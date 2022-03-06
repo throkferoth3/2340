@@ -1,5 +1,8 @@
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 
@@ -10,9 +13,9 @@ public class MainGame {
     private static HBox playerInfoDisplay = new HBox();
     private static Path path;
     private static Monument monument;
-    private static HBox center = new HBox();
+    private static Group center = new Group();
 
-    private Scene scene = new Scene(mainPane, 500, 300);
+    private Scene scene = new Scene(mainPane, Controller.getScreenWidth(), Controller.getScreenHeight());
 
     public static void initialize() {
         switch (PlayerInfo.getDifficulty()) {
