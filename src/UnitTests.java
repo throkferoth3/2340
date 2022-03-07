@@ -1,6 +1,9 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import java.util.Random;
+import javafx.scene.paint.Color;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,8 +42,29 @@ public class UnitTests {
     }
     @Test(timeout = TIMEOUT)
     public void testAddTower() {
-        Tower t = new DefaultTower(0d, 0d);
+        Tower t = new RedTower(0d, 0d);
         PlayerInfo.addTower(t);
         assertEquals(PlayerInfo.getTowerList().size(), 1);
+
+    }
+    @Test(timeout = TIMEOUT)
+    public void testNegativeCost() {
+        boolean exception = false;
+        ShopEntry sE = new ShopEntry();
+        try {
+            sE.setCost(new int[]{0, -1, 0});
+        } catch (IllegalArgumentException e) {
+            exception = true;
+        }
+        Assert.assertTrue(exception);
+    }
+    @Test(timeout = TIMEOUT)
+    public void checkTowerColors() {
+        Tower r = new RedTower(1.0, 1.0);
+        Tower g = new GreenTower(1.0, 1.0);
+        Tower b = new BlueTower(1.0, 1.0);
+        assertEquals(r.getDisplay().getFill(), Color.RED);
+        assertEquals(g.getDisplay().getFill(), Color.GREEN);
+        assertEquals(b.getDisplay().getFill(), Color.BLUE);
     }
 }

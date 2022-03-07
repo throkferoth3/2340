@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.AnchorPane;
@@ -31,10 +32,10 @@ public class MainGame {
     private static Path path;
     private static Monument monument;
 
-    private ShopEntry exampleTowerShop = new ShopEntry(new int[] {15, 20, 25}, 0, "EXAMPLE");
+    private ShopEntry exampleTowerShop = new ShopEntry(new int[] {15, 20, 25}, 0, "RED");
 
     private static Boolean placementActive = false;
-    private int currentTowerIndicator;
+    private int currentTowerIndicator = 0;
 
     private Scene scene = new Scene(mainPane, Controller.getScreenWidth(), Controller.getScreenHeight());
 
@@ -62,21 +63,39 @@ public class MainGame {
 
         shopDisplay.getChildren().addAll(exampleTowerShop.getDisplay());
 
-        exampleTowerShop.getDisplay().setOnAction(new EventHandler<ActionEvent>() {
+        exampleTowerShop.getDisplay().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent e) {
-                if (!placementActive) {
-                    if (PlayerInfo.getMoney() >= exampleTowerShop.getCost()) {
-                        currentTowerIndicator = exampleTowerShop.getTowerIndicator();
-                        placementActive = true;
-                        PlayerInfo.setMoney(PlayerInfo.getMoney() - exampleTowerShop.getCost());
-                        moneyText.setText("Money: " + PlayerInfo.getMoney() + " ");
-
-                    } else {
-                        insufficientMoneyText.setText("   Insufficient funds");
+            public void handle(MouseEvent e) {
+                if (e.getButton() == MouseButton.SECONDARY && !placementActive) {
+                    switch (currentTowerIndicator) {
+                        case 0:
+                            currentTowerIndicator++;
+                            exampleTowerShop.getDisplay().setText("GREEN");
+                            break;
+                        case 1:
+                            currentTowerIndicator++;
+                            exampleTowerShop.getDisplay().setText("BLUE");
+                            break;
+                        case 2:
+                            currentTowerIndicator = 0;
+                            exampleTowerShop.getDisplay().setText("RED");
+                            break;
+                        default:
+                            break;
                     }
                 } else {
-                    insufficientMoneyText.setText(   "Already placing tower");
+                    if (!placementActive) {
+                        if (PlayerInfo.getMoney() >= exampleTowerShop.getCost()) {
+                            placementActive = true;
+                            PlayerInfo.setMoney(PlayerInfo.getMoney() - exampleTowerShop.getCost());
+                            moneyText.setText("Money: " + PlayerInfo.getMoney() + " ");
+
+                        } else {
+                            insufficientMoneyText.setText("   Insufficient funds");
+                        }
+                    } else {
+                        insufficientMoneyText.setText("Already placing tower");
+                    }
                 }
             }
         });
@@ -96,12 +115,25 @@ public class MainGame {
                     } else {
                         switch (currentTowerIndicator) {
                             case 0:
-                                Tower newTower = new DefaultTower(mouseEvent.getX(), mouseEvent.getY());
-                                ((Rectangle) newTower.getDisplay()).setX(mouseEvent.getX() - newTower.getWidth() / 2d);
-                                ((Rectangle) newTower.getDisplay()).setY(mouseEvent.getY() - newTower.getHeight() / 2d);
-                                center.getChildren().add(newTower.getDisplay());
-                                PlayerInfo.addTower(newTower);
+                                Tower redTower = new RedTower(mouseEvent.getX(), mouseEvent.getY());
+                                ((Rectangle) redTower.getDisplay()).setX(mouseEvent.getX() - redTower.getWidth() / 2d);
+                                ((Rectangle) redTower.getDisplay()).setY(mouseEvent.getY() - redTower.getHeight() / 2d);
+                                center.getChildren().add(redTower.getDisplay());
+                                PlayerInfo.addTower(redTower);
                                 break;
+                            case 1:
+                                Tower greenTower = new GreenTower(mouseEvent.getX(), mouseEvent.getY());
+                                ((Rectangle) greenTower.getDisplay()).setX(mouseEvent.getX() - greenTower.getWidth() / 2d);
+                                ((Rectangle) greenTower.getDisplay()).setY(mouseEvent.getY() - greenTower.getHeight() / 2d);
+                                center.getChildren().add(greenTower.getDisplay());
+                                PlayerInfo.addTower(greenTower);
+                                break;
+                            case 2:
+                                Tower blueTower = new BlueTower(mouseEvent.getX(), mouseEvent.getY());
+                                ((Rectangle) blueTower.getDisplay()).setX(mouseEvent.getX() - blueTower.getWidth() / 2d);
+                                ((Rectangle) blueTower.getDisplay()).setY(mouseEvent.getY() - blueTower.getHeight() / 2d);
+                                center.getChildren().add(blueTower.getDisplay());
+                                PlayerInfo.addTower(blueTower);
                             default:
                                 break;
                         }
@@ -114,5 +146,8 @@ public class MainGame {
     }
     public Scene getScene() {
         return scene;
+    }
+    public Boolean getPlacementActive() {
+        return placementActive;
     }
 }
