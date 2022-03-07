@@ -1,0 +1,5 @@
+testNegativeCost(): This unit test tests the case where the cost in ShopEntry is set to a negative number. The test checks to see if an exception is thrown when a trying to
+                    call the setCost() method with the array parameter having a negative number in it.
+
+checkTowerColors(): This unit test checks that the three different types of towers are all the correct colors upon instantiation. It does this by creating a new object of each
+                    of the three towers and utilizing the assertEquals() method to confirm that their colors are the intended ones.
