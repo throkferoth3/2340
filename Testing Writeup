@@ -3,3 +3,9 @@ testNegativeCost(): This unit test tests the case where the cost in ShopEntry is
 
 checkTowerColors(): This unit test checks that the three different types of towers are all the correct colors upon instantiation. It does this by creating a new object of each
                     of the three towers and utilizing the assertEquals() method to confirm that their colors are the intended ones.
+
+checkInsufficientFunds(): This unit test checks that the player has enough money to buy the towers. It does this by setting the players balance to 0 and checking if an error is 
+		    fired after attempting to make a purchase.
+
+CheckTowerIndicator(): This unit test checks if the tower has the appropriate indicatores (0, 1, 2) respectively. It does this buy creating a tower and checking if it has the 
+		    appropriate indicator that it was assigned. 
