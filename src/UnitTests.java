@@ -67,4 +67,32 @@ public class UnitTests {
         assertEquals(g.getDisplay().getFill(), Color.GREEN);
         assertEquals(b.getDisplay().getFill(), Color.BLUE);
     }
+    @Test(timeout = TIMEOUT)
+    public void checkInsufficientFunds() {
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
+        ShopEntry shop = new ShopEntry();
+        PlayerInfo.setMoney(0);
+        boolean error = false;
+        shop.setCost(new int[]{20, 20, 20});
+        Button b = shop.getDisplay();
+        try {
+             b.fire();
+        } catch(Exception e) {
+            error = true;
+        }
+        Assert.assertTrue(error);
+    }
+    @Test(timeout = TIMEOUT)
+    public void checkTowerIndicator() {
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
+        ShopEntry shop = new ShopEntry();
+        button b = shop.getDisplay();
+        b.fire();
+        Tower r = new RedTower(1.0, 1.0);
+        PlayerInfo.addTower(r);
+        assertEquals(shop.getTowerIndicator(), 0);
+    }
+    
 }
