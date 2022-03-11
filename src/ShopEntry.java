@@ -30,4 +30,19 @@ public class ShopEntry {
         }
         this.cost = cost;
     }
+
+    public void buyTower() {
+        if (!MainGame.getPlacementActive()) {
+            if (PlayerInfo.getMoney() >= cost[PlayerInfo.getDifficulty()]) {
+                MainGame.setPlacementActive(true);
+                PlayerInfo.setMoney(PlayerInfo.getMoney() - cost[PlayerInfo.getDifficulty()]);
+                MainGame.getMoneyText().setText("Money: " + PlayerInfo.getMoney() + " ");
+                MainGame.setCurrentTowerIndicator(towerIndicator);
+            } else {
+                MainGame.getInsufficientMoneyText().setText("   Insufficient funds");
+            }
+        } else {
+            MainGame.getInsufficientMoneyText().setText("Already placing tower");
+        }
+    }
 }

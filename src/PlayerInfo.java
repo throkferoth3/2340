@@ -45,18 +45,18 @@ public class PlayerInfo {
         return ownedTowers;
     }
     public static void initHealthAndMoney() {
-        switch (PlayerInfo.getDifficulty()) {
+        switch (difficulty) {
             case 0:
-                PlayerInfo.setHealth(20);
-                PlayerInfo.setMoney(100);
+                health = 20;
+                money = 100;
                 break;
             case 1:
-                PlayerInfo.setHealth(15);
-                PlayerInfo.setMoney(75);
+                health = 15;
+                money = 75;
                 break;
             case 2:
-                PlayerInfo.setHealth(10);
-                PlayerInfo.setMoney(50);
+                health = 10;
+                money = 50;
                 break;
             default:
                 break;
@@ -77,4 +77,5 @@ public class PlayerInfo {
         }
         return true;
     }
+
 }
