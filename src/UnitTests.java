@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import java.util.Random;
 import javafx.scene.paint.Color;
+import javafx.scene.control.Button;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,8 +31,8 @@ public class UnitTests {
     }
 
     @Test(timeout = TIMEOUT)
-    public void negativeCoordinateTowerPlacement() {
-        assertFalse(PlayerInfo.validPlacement(-1, -2));
+    public void invalidCoordinateTowerPlacement() {
+        assertFalse(PlayerInfo.validPlacement(20, 20));
     }
 
     @Test(timeout = TIMEOUT)
@@ -88,7 +89,7 @@ public class UnitTests {
         PlayerInfo.setDifficulty(0);
         PlayerInfo.initHealthAndMoney();
         ShopEntry shop = new ShopEntry();
-        button b = shop.getDisplay();
+        Button b = shop.getDisplay();
         b.fire();
         Tower r = new RedTower(1.0, 1.0);
         PlayerInfo.addTower(r);
