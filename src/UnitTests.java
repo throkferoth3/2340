@@ -89,8 +89,6 @@ public class UnitTests {
         PlayerInfo.setDifficulty(0);
         PlayerInfo.initHealthAndMoney();
         ShopEntry shop = new ShopEntry();
-        Button b = shop.getDisplay();
-        b.fire();
         Tower r = new RedTower(1.0, 1.0);
         PlayerInfo.addTower(r);
         assertEquals(shop.getTowerIndicator(), 0);
