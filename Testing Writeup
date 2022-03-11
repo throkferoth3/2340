@@ -1,7 +1,7 @@
 healthVariesBasedOnDifficulty(): This unit test checks to make sure that the health of the player varies depending on the difficulty. If it does not get the correct cost,
                                  the test returns an assertion error. This is for milestone 1.
 
-public void invalidCoordinateTowerPlacement(): This unit test tests to see if a tower can be placed on a invalid coordinate. Towers should not be able to be placed on a Y coordinate
+invalidCoordinateTowerPlacement(): This unit test tests to see if a tower can be placed on a invalid coordinate. Towers should not be able to be placed on a Y coordinate
                                                of <= 30. This would put them on top of the UI. This is for milestone 2.
 
 testNegativeCost(): This unit test tests the case where the cost in ShopEntry is set to a negative number. The test checks to see if an exception is thrown when a trying to
