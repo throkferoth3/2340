@@ -25,14 +25,8 @@ public class PlayerInfo {
     public static void setMoney(int m) {
         money = m;
     }
-    public static void modifyMoney(int m) {
-        money += m;
-    }
     public static void setHealth(int h) {
         health = h;
-    }
-    public static void modifyHealth(int h) {
-        health += h;
     }
     public static void setName(String n) {
         name = n;
@@ -46,32 +40,32 @@ public class PlayerInfo {
     }
     public static void initHealthAndMoney() {
         switch (difficulty) {
-            case 0:
-                health = 20;
-                money = 100;
-                break;
-            case 1:
-                health = 15;
-                money = 75;
-                break;
-            case 2:
-                health = 10;
-                money = 50;
-                break;
-            default:
-                break;
+        case 0:
+            health = 20;
+            money = 100;
+            break;
+        case 1:
+            health = 15;
+            money = 75;
+            break;
+        case 2:
+            health = 10;
+            money = 50;
+            break;
+        default:
+            break;
         }
     }
 
-    public static boolean validPlacement(double X, double Y) {
+    public static boolean validPlacement(double x, double y) {
         if (ownedTowers == null) {
             return true;
         }
-        if (Y <= 30) {
+        if (y <= 30) {
             return false;
         }
         for (int i = 0; i < ownedTowers.size(); i++) {
-            if (ownedTowers.get(i).isWithin(X, Y)) {
+            if (ownedTowers.get(i).isWithin(x, y)) {
                 return false;
             }
         }

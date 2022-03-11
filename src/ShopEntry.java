@@ -1,8 +1,8 @@
 import javafx.scene.control.Button;
 public class ShopEntry {
-    private Button display;//The button that lets the player buy the tower
+    private Button display; //The button that lets the player buy the tower
     private int[] cost; //[EasyCost, NormalCost, HardCost]
-    private int towerIndicator;//Indicator for which tower is being placed. Start at 0 and increment for each new type of tower.
+    private int towerIndicator; //Indicator for which tower is being placed.
     public ShopEntry() {
         cost = new int[]{0, 0, 0};
         towerIndicator = 0;

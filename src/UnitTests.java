@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import java.util.Random;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 
@@ -78,8 +77,8 @@ public class UnitTests {
         shop.setCost(new int[]{20, 20, 20});
         Button b = shop.getDisplay();
         try {
-             b.fire();
-        } catch(Exception e) {
+            b.fire();
+        } catch (Exception e) {
             error = true;
         }
         Assert.assertTrue(error);

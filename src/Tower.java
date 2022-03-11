@@ -1,4 +1,3 @@
-import com.sun.tools.javac.Main;
 import javafx.scene.shape.*;
 abstract class Tower {
 
@@ -10,9 +9,9 @@ abstract class Tower {
     protected double posX;
     protected double posY;
 
-    public Tower(Double X, Double Y) {
-        posY = Y - height / 2d;
-        posX = X - width / 2d;
+    public Tower(Double x, Double y) {
+        posY = y - height / 2d;
+        posX = x - width / 2d;
     }
 
     public Shape getDisplay() {
@@ -39,13 +38,12 @@ abstract class Tower {
         return posY;
     }
 
-    public void setPosition(double X, double Y) {
-        posX = X;
-        posY = Y;
+    public void setPosition(double x, double y) {
+        posX = x;
+        posY = y;
     }
-    public boolean isWithin(double X, double Y) {
-
-        if (X >= posX - width && X <= posX + width && Y <= posY + height && Y >= posY - height) {
+    public boolean isWithin(double x, double y) {
+        if (x >= posX - width && x <= posX + width && y <= posY + height && y >= posY - height) {
             return true;
         }
         return false;

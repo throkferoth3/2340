@@ -13,8 +13,9 @@ public class Path {
         return display;
     }
     public boolean isWithin(double x, double y) {
-        if ((y >= Controller.getScreenHeight() / 2d - 100 - buffer && y <= Controller.getScreenHeight() / 2d - 100 + height + buffer) &&
-                (x >= -100 - buffer && x <= -100 + width + buffer)) {
+        if ((y >= Controller.getScreenHeight() / 2d - 100 - buffer
+                && y <= Controller.getScreenHeight() / 2d - 100 + height + buffer)
+                && (x >= -100 - buffer && x <= -100 + width + buffer)) {
             return true;
         }
         return false;
