@@ -10,9 +10,11 @@
 # Intellij
 .idea/
 
+
 # Checkstyle
 run_checkstyle.py
 cs2340_checks.xml
+*.iml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

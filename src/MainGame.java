@@ -32,10 +32,12 @@ public class MainGame {
     private static Path path;
     private static Monument monument;
 
-    private ShopEntry exampleTowerShop = new ShopEntry(new int[] {15, 20, 25}, 0, "RED");
+    private ShopEntry redShop = new ShopEntry(new int[] {15, 20, 25}, 0, "RED");
+    private ShopEntry greenShop = new ShopEntry(new int[] {10, 15, 20}, 1, "GREEN");
+    private ShopEntry blueShop = new ShopEntry(new int[] {20, 25, 30}, 2, "BLUE");
 
     private static Boolean placementActive = false;
-    private int currentTowerIndicator = 0;
+    private static int currentTowerIndicator = 0;
 
     private Scene scene = new Scene(mainPane, Controller.getScreenWidth(), Controller.getScreenHeight());
 
@@ -61,45 +63,26 @@ public class MainGame {
 
         insufficientMoneyText = new Text("");
 
-        shopDisplay.getChildren().addAll(exampleTowerShop.getDisplay());
+        shopDisplay.getChildren().addAll(redShop.getDisplay(), greenShop.getDisplay(), blueShop.getDisplay());
 
-        exampleTowerShop.getDisplay().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        redShop.getDisplay().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                if (e.getButton() == MouseButton.SECONDARY && !placementActive) {
-                    switch (currentTowerIndicator) {
-                        case 0:
-                            currentTowerIndicator++;
-                            exampleTowerShop.getDisplay().setText("GREEN");
-                            break;
-                        case 1:
-                            currentTowerIndicator++;
-                            exampleTowerShop.getDisplay().setText("BLUE");
-                            break;
-                        case 2:
-                            currentTowerIndicator = 0;
-                            exampleTowerShop.getDisplay().setText("RED");
-                            break;
-                        default:
-                            break;
-                    }
-                } else {
-                    if (!placementActive) {
-                        if (PlayerInfo.getMoney() >= exampleTowerShop.getCost()) {
-                            placementActive = true;
-                            PlayerInfo.setMoney(PlayerInfo.getMoney() - exampleTowerShop.getCost());
-                            moneyText.setText("Money: " + PlayerInfo.getMoney() + " ");
-
-                        } else {
-                            insufficientMoneyText.setText("   Insufficient funds");
-                        }
-                    } else {
-                        insufficientMoneyText.setText("Already placing tower");
-                    }
-                }
+                redShop.buyTower();
             }
         });
-        //ADD TOWERS HERE
+        greenShop.getDisplay().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                greenShop.buyTower();
+            }
+        });
+        blueShop.getDisplay().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                blueShop.buyTower();
+            }
+        });
 
         shopDisplay.getChildren().add(insufficientMoneyText);
         topUI.getChildren().add(shopDisplay);
@@ -107,7 +90,6 @@ public class MainGame {
         center.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-
                 if (placementActive) {
                     if (path.isWithin(mouseEvent.getX(), mouseEvent.getY()) ||
                             !PlayerInfo.validPlacement(mouseEvent.getX() - 15, mouseEvent.getY() - 15)) {
@@ -147,7 +129,19 @@ public class MainGame {
     public Scene getScene() {
         return scene;
     }
-    public Boolean getPlacementActive() {
+    public static Boolean getPlacementActive() {
         return placementActive;
+    }
+    public static void setPlacementActive(boolean p) {
+        placementActive = p;
+    }
+    public static Text getMoneyText() {
+        return moneyText;
+    }
+    public static Text getInsufficientMoneyText() {
+        return insufficientMoneyText;
+    }
+    public static void setCurrentTowerIndicator(int ti) {
+        currentTowerIndicator = ti;
     }
 }
