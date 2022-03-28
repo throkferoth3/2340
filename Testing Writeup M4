@@ -1,0 +1,6 @@
+checkEnemyColors: This unit test check that the three different types of enemies implemented do in fact have different colors. This test is relevant because it allows us
+                  to confirm that our game GUI is visually consistant with our implementational intentions.
+        
+checkHealthFunctionalities: This unit test verifies that the health of the three different types of enemies can be propery accessed and altered. This test is relevant because it
+                  confirms that the classes for each type of enemy correctly extend the abstract Enemy class, which will allow us to to make changes to the enemies' stats as the
+                  game progresses.
