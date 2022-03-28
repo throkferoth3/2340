@@ -1,11 +1,19 @@
+import javafx.animation.PathTransition;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.util.Duration;
+
+import java.awt.*;
 
 public class MainGame {
     private static BorderPane mainPane = new BorderPane();
@@ -23,6 +31,8 @@ public class MainGame {
     private ShopEntry redShop = new ShopEntry(new int[] {15, 20, 25}, 0, "RED");
     private ShopEntry greenShop = new ShopEntry(new int[] {10, 15, 20}, 1, "GREEN");
     private ShopEntry blueShop = new ShopEntry(new int[] {20, 25, 30}, 2, "BLUE");
+
+    private StartCombat startCombat = new StartCombat();
 
     private static Boolean placementActive = false;
     private static int currentTowerIndicator = 0;
@@ -74,8 +84,17 @@ public class MainGame {
             }
         });
 
+        startCombat.getDisplay().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (!StartCombat.getInCombat()) {
+                    startCombat.startCombat();
+                }
+            }
+        });
+
         shopDisplay.getChildren().add(insufficientMoneyText);
-        topUI.getChildren().add(shopDisplay);
+        topUI.getChildren().addAll(shopDisplay, startCombat.getDisplay());
 
         center.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -139,10 +158,14 @@ public class MainGame {
     public static Text getMoneyText() {
         return moneyText;
     }
+    public static void updateHealthText() {healthText.setText("Health: " + PlayerInfo.getHealth());};
     public static Text getInsufficientMoneyText() {
         return insufficientMoneyText;
     }
     public static void setCurrentTowerIndicator(int ti) {
         currentTowerIndicator = ti;
+    }
+    public static AnchorPane getCenter() {
+        return center;
     }
 }
