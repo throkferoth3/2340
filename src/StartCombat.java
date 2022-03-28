@@ -1,3 +1,4 @@
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
@@ -34,12 +35,13 @@ public class StartCombat {
                 PathTransition transition = new PathTransition();
                 transition.setNode(circle); // set to enemy later
                 transition.setDuration(Duration.seconds(5)); // can be changed to change enemy speed
+                transition.setInterpolator(Interpolator.LINEAR);
                 transition.setPath(pathLine);
                 transition.setCycleCount(1);
                 transition.setOnFinished(actionEvent -> {
                    // if (enemy.getHealth() != 0) { // for when enemies can die
                         MainGame.getCenter().getChildren().remove(circle);
-                        PlayerInfo.setHealth(PlayerInfo.getHealth() - 1); // can be changed later
+                        PlayerInfo.setHealth(PlayerInfo.getHealth() - 5); // can be changed later
                         MainGame.updateHealthText();
                     //}
                 });

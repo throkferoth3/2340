@@ -17,10 +17,10 @@ public class InitialConfig {
     private int spacing = 10;
 
     private HBox topPane = new HBox(spacing);
-    private Text nameText;
-    private TextField nameTextBox;
+    private static Text nameText;
+    private static TextField nameTextBox;
     private Button nameEnter;
-    private Text invalidName = new Text("");
+    private static Text invalidName = new Text("");
 
     private HBox bottomPane = new HBox(spacing);
 
@@ -33,7 +33,7 @@ public class InitialConfig {
     private Button hardButton = new Button("Hard");
 
     private int difficulty = -1;
-    private Text difficultyText = new Text("Difficulty: ");
+    private static Text difficultyText = new Text("Difficulty: ");
 
     private Button continueButton = new Button("Continue");
     private Button backButton = new Button("Back");
@@ -41,6 +41,16 @@ public class InitialConfig {
 
     private Scene scene = new Scene(mainPane, Controller.getScreenWidth(),
             Controller.getScreenHeight());
+
+    public static void reset() {
+        PlayerInfo.setName("");
+        nameText.setText("Name: ");
+        invalidName.setText("");
+        nameTextBox.setText("");
+        PlayerInfo.setDifficulty(-1);
+        difficultyText.setText("Difficulty: ");
+        return;
+    }
 
 
     public InitialConfig() {
@@ -116,7 +126,7 @@ public class InitialConfig {
         continueButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                if (isNameValid(name) && difficulty != -1) {
+                if (isNameValid(name) && PlayerInfo.getDifficulty() != -1) {
                     failContinue.setText("");
                     Controller.switchToGame();
                     MainGame.initialize();

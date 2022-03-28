@@ -27,6 +27,9 @@ public class PlayerInfo {
     }
     public static void setHealth(int h) {
         health = h;
+        if (h == 0) {
+            Controller.switchToGameOver();
+        }
     }
     public static void setName(String n) {
         name = n;
@@ -39,6 +42,8 @@ public class PlayerInfo {
         return ownedTowers;
     }
     public static void initHealthAndMoney() {
+        ownedTowers.clear();
+
         switch (difficulty) {
         case 0:
             health = 20;
