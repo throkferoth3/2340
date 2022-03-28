@@ -1,8 +1,10 @@
 import javafx.scene.shape.*;
 
 abstract class Enemy {
-
-    private Circle display = new Circle(Controller.getScreenWidth() - 35);
+    public Enemy(int health) {
+        this.health = health;
+    }
+    private Circle display = new Circle(15);
     private int health;
 
     public Circle getDisplay() {
