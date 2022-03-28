@@ -15,39 +15,9 @@ public class StartCombat {
     double X;
     double Y;
     private Button startCombatButton = new Button("start combat");
-    private Timer enemySpawnTimer = new Timer();
     private int counter = 0;
     private Polyline pathLine = new Polyline();
     private static boolean inCombat = false;
-
-    private TimerTask enemySpawner = new TimerTask() {
-        @Override
-        public void run() {
-            Platform.runLater(() -> {
-                if (counter == 5) { // number of enemies
-                    inCombat = false;
-                    cancel();
-                }
-                Circle circle = new Circle(15); // temp enemy
-                circle.setFill(Color.RED);
-                MainGame.getCenter().getChildren().add(circle);
-                PathTransition transition = new PathTransition();
-                transition.setNode(circle); // set to enemy later
-                transition.setDuration(Duration.seconds(5)); // can be changed to change enemy speed
-                transition.setPath(pathLine);
-                transition.setCycleCount(1);
-                transition.setOnFinished(actionEvent -> {
-                   // if (enemy.getHealth() != 0) { // for when enemies can die
-                        MainGame.getCenter().getChildren().remove(circle);
-                        PlayerInfo.setHealth(PlayerInfo.getHealth() - 1); // can be changed later
-                        MainGame.updateHealthText();
-                    //}
-                });
-                counter += 1;
-                transition.play();
-            });
-        }
-    };
 
     public StartCombat() {
         X = path.getDisplay().getX();
@@ -64,7 +34,48 @@ public class StartCombat {
 
     public void startCombat() {
         inCombat = true;
-        enemySpawnTimer.scheduleAtFixedRate(enemySpawner, 0, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(5, 5, 1), 0, 1000);
+    }
+
+    public Timer makeTimer() {
+        return new Timer();
+    }
+
+    public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage) {
+        TimerTask enemySpawner = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    if (counter == numberOfEnemies) {
+                        inCombat = false;
+                        counter = 0;
+                        cancel();
+                    }
+                    Circle circle = new Circle(15); // temp enemy
+                    circle.setFill(Color.RED);
+                    MainGame.getCenter().getChildren().add(circle);
+                    PathTransition transition = new PathTransition();
+                    transition.setNode(circle); // set to enemy later
+                    transition.setDuration(Duration.seconds(speed));
+                    transition.setPath(pathLine);
+                    transition.setCycleCount(1);
+                    transition.setOnFinished(actionEvent -> {
+                        // if (enemy.getHealth() != 0) { // for when enemies can die
+                        MainGame.getCenter().getChildren().remove(circle);
+                        if (PlayerInfo.getHealth() - damage < 0) {
+                            PlayerInfo.setHealth(0); // can be changed later
+                        } else {
+                            PlayerInfo.setHealth(PlayerInfo.getHealth() - damage); // can be changed later
+                        }
+                        MainGame.updateHealthText();
+                        //}
+                    });
+                    counter += 1;
+                    transition.play();
+                });
+            }
+        };
+        return enemySpawner;
     }
 
     public static boolean getInCombat() {
