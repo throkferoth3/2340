@@ -44,6 +44,8 @@ public class StartCombat {
 
     public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage) {
         TimerTask enemySpawner = new TimerTask() {
+            int enemyIndicator = 0;
+            Enemy enemy = new PurpleEnemy(15);
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -52,17 +54,30 @@ public class StartCombat {
                         counter = 0;
                         cancel();
                     }
-                    Circle circle = new Circle(15); // temp enemy
-                    circle.setFill(Color.RED);
-                    MainGame.getCenter().getChildren().add(circle);
+                    switch (enemyIndicator) {
+                        case 0:
+                            enemy = new PurpleEnemy(15);
+                            enemyIndicator++;
+                            break;
+                        case 1:
+                            enemy = new YellowEnemy(15);
+                            enemyIndicator++;
+                            break;
+                        case 2:
+                            enemy = new OrangeEnemy(15);
+                            enemyIndicator = 0;
+                            break;
+                    }
+
+                    MainGame.getCenter().getChildren().add(enemy.getDisplay());
                     PathTransition transition = new PathTransition();
-                    transition.setNode(circle); // set to enemy later
+                    transition.setNode(enemy.getDisplay()); // set to enemy later
                     transition.setDuration(Duration.seconds(speed));
                     transition.setPath(pathLine);
                     transition.setCycleCount(1);
                     transition.setOnFinished(actionEvent -> {
                         // if (enemy.getHealth() != 0) { // for when enemies can die
-                        MainGame.getCenter().getChildren().remove(circle);
+                        MainGame.getCenter().getChildren().remove(enemy.getDisplay());
                         if (PlayerInfo.getHealth() - damage < 0) {
                             PlayerInfo.setHealth(0); // can be changed later
                         } else {

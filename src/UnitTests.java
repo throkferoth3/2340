@@ -92,5 +92,31 @@ public class UnitTests {
         PlayerInfo.addTower(r);
         assertEquals(shop.getTowerIndicator(), 0);
     }
-    
+    /**
+     * M4 unit test to check that the three enemies have different colors.
+     */
+    @Test(timeout = TIMEOUT)
+    public void checkEnemyColors() {
+        Enemy p = new PurpleEnemy(15);
+        Enemy y = new YellowEnemy(15);
+        Enemy o = new OrangeEnemy(15);
+        assertEquals(p.getDisplay().getFill(), Color.PURPLE);
+        assertEquals(y.getDisplay().getFill(), Color.YELLOW);
+        assertEquals(o.getDisplay().getFill(), Color.ORANGE);
+    }
+    /**
+     * M4 unit test to verify that the healths of the different types of enemies can be properly accessed and altered.
+     */
+    @Test(timeout = TIMEOUT)
+    public void checkHealthFunctionalities() {
+        Enemy p = new PurpleEnemy(15);
+        Enemy y = new YellowEnemy(15);
+        Enemy o = new OrangeEnemy(15);
+        p.setHealth(30);
+        y.setHealth(30);
+        o.setHealth(30);
+        assertEquals(p.getHealth(), 30);
+        assertEquals(y.getHealth(), 30);
+        assertEquals(o.getHealth(), 30);
+    }
 }
