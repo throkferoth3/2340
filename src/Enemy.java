@@ -10,7 +10,9 @@ abstract class Enemy {
     public Circle getDisplay() {
         return display;
     }
-
+    public int getHealth() {
+        return health;
+    }
     public void setHealth(int newHealth) {
         health = newHealth;
     }
