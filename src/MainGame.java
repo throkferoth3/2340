@@ -42,9 +42,8 @@ public class MainGame {
 
     public static void initialize() {
         PlayerInfo.initHealthAndMoney();
-        moneyText = new Text("Money: " + PlayerInfo.getMoney() + " ");
-        healthText = new Text("Health: " + PlayerInfo.getHealth());
-        playerInfoDisplay.getChildren().addAll(moneyText, healthText);
+        moneyText.setText("Money: " + PlayerInfo.getMoney() + " ");
+        healthText.setText("Health: " + PlayerInfo.getHealth());
     }
 
     public MainGame() {

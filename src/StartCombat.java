@@ -1,3 +1,4 @@
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
