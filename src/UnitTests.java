@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 
+import javafx.scene.shape.Circle;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -176,20 +177,17 @@ public class UnitTests {
         PlayerInfo.setDifficulty(0);
         PlayerInfo.initHealthAndMoney();
         PlayerInfo.takeDamage(1);
-        assertEquals(PlayerInfo.getHealth(), 19);
+        assertEquals(19, PlayerInfo.getHealth());
     }
 
     @Test(timeout = TIMEOUT)
-    public void moneyVariesBasedOnDifficulty() {
-        PlayerInfo.setDifficulty(0);
-        PlayerInfo.initHealthAndMoney();
-        assertEquals(100, PlayerInfo.getMoney());
-        PlayerInfo.setDifficulty(1);
-        PlayerInfo.initHealthAndMoney();
-        assertEquals(75, PlayerInfo.getMoney());
-        PlayerInfo.setDifficulty(2);
-        PlayerInfo.initHealthAndMoney();
-        assertEquals(50, PlayerInfo.getMoney());
+    public void checkEnemyShape() {
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
+        assertTrue(p.getDisplay() instanceof Circle);
+        assertTrue(y.getDisplay() instanceof Circle);
+        assertTrue(o.getDisplay() instanceof Circle);
     }
 
 }
