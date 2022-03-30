@@ -1,11 +1,15 @@
-checkEnemyColors: This unit test check that the three different types of enemies implemented do in fact have different colors. This test is relevant because it allows us to confirm that our game GUI is visually consistant with our implementational intentions.
+checkEnemyColors: This unit test check that the three different types of enemies implemented do in fact have different colors. This test is relevant because it allows us to confirm that our game GUI is visually consistent with our implementation intentions.
         
-checkHealthFunctionalities: This unit test verifies that the health of the three different types of enemies can be propery accessed and altered. This test is relevant because it confirms that the classes for each type of enemy correctly extend the abstract Enemy class, which will allow us to to make changes to the enemies' stats as the game progresses.
+checkHealthFunctionalities: This unit test verifies that the health of the three different types of enemies can be properly accessed and altered. This test is relevant because it confirms that the classes for each type of enemy correctly extend the abstract Enemy class, which will allow us to make changes to the enemies' stats as the game progresses.
 
-checkStoreDisplayyAfterEnd: This unit test verifies that the player is not able to buy after the monument health is 0. This test is relevant because it confirms that the game is over after the monument has been destroyed by the enemy. 
+checkStoreDisplayAfterEnd: This unit test verifies that the player is not able to buy after the monument health is 0. This test is relevant because it confirms that the game is over after the monument has been destroyed by the enemy.
 
 checkStartCombatPrompt: This unit test verifies that there is a start combat button. This test is relevant because it ensures that we are prompted with the start combat button to begin the game on the game screen. 
 
 checkDifferingHealth: This unit test creates an enemy of each type and checks that their healths are different. This is relevant because the types of enemies should differ in how much health they have.
 
-checkReset: This unit test sets the difficulty, changes the money, and then resets the game to check that the money is changed back to the initial value. This test is relevant because the game needs to be reset properly after the player triggers a game over. 
+checkReset: This unit test sets the difficulty, changes the money, and then resets the game to check that the money is changed back to the initial value. This test is relevant because the game needs to be reset properly after the player triggers a game over.
+
+playerTakeDamage: This unit test sets the difficulty to easy and has the player take 1 damage. Then it checks to see if the playerInfo changed accordingly. This test is relevant because if the player info did not change correctly, the player's actual health did not decrease.
+
+checkEnemyShape: This unit test creates 1 of each type of enemy and checks to see if they are all the correct shape. This test is relevant because we want all the enemies to be a circle type shape. It may cause bugs later on when we try to change the size of the enemy but fail because the shape is not correct.
