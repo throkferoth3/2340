@@ -148,4 +148,19 @@ public class UnitTests {
         }
         Assert.assertFalse(error);
     }
+
+
+    @Test(timeout = TIMEOUT)
+    public void checkGameOverReset() {
+        PlayerInfo.setDifficulty(1);
+        InitialConfig.reset();
+        assertEquals(PlayerInfo.getDifficulty(), -1);
+    }
+
+    @Test(timeout = TIMEOUT)
+    public void checkInCombat() {
+        StartCombat start = new StartCombat();
+        start.startCombat();
+        assertEquals(start.getInCombat(), true);
+    }
 }
