@@ -119,4 +119,33 @@ public class UnitTests {
         assertEquals(y.getHealth(), 30);
         assertEquals(o.getHealth(), 30);
     }
+
+    @Test(timeout = TIMEOUT)
+    public void checkStoreDisplayAfterEnd() {
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
+        ShopEntry shop = new ShopEntry();
+        PlayerInfo.setMoney(0);
+        PlayerInfo.setHealth(0);
+        boolean error = false;
+        try {
+            shop.setCost(new int[]{0, 0, 0});
+            Button b = shop.getDisplay();
+            b.fire();
+        } catch (Exception e) {
+            error = true;
+        }
+        Assert.assertTrue(error);
+    }
+    
+    @Test(timeout = TIMEOUT)
+    public void checkStartCombatPrompt(){
+        StartCombat sc = new StartCombat();
+        sc.getDisplay();
+        boolean error = false;
+        if (sc.getDisplay() == null){
+            error = true;
+        }
+        Assert.assertFalse(error);
+    }
 }

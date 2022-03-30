@@ -4,3 +4,9 @@ checkEnemyColors: This unit test check that the three different types of enemies
 checkHealthFunctionalities: This unit test verifies that the health of the three different types of enemies can be propery accessed and altered. This test is relevant because it
                   confirms that the classes for each type of enemy correctly extend the abstract Enemy class, which will allow us to to make changes to the enemies' stats as the
                   game progresses.
+
+checkStoreDisplayyAfterEnd: This unit test verifies that the player is not able to buy after the monument health is 0. This test is relavent because it confirms that the game is
+		  over after the monument has been destroyed by the enemy. 
+
+checkStartCombatPrompt: This unit test verifies that there is a start combat button. This test is relavent because it ensures that we are prompted with the start combat button
+		  to begin the game on the game screen. 
