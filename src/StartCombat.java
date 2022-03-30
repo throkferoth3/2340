@@ -68,16 +68,17 @@ public class StartCombat {
                             enemyIndicator = 0;
                             break;
                     }
-
-                    MainGame.getCenter().getChildren().add(enemy.getDisplay());
+                    Circle enemyDisplay = enemy.getDisplay();
+                    MainGame.getCenter().getChildren().add(enemyDisplay);
                     PathTransition transition = new PathTransition();
-                    transition.setNode(enemy.getDisplay()); // set to enemy later
+                    transition.setNode(enemyDisplay); // set to enemy later
                     transition.setDuration(Duration.seconds(speed));
                     transition.setPath(pathLine);
                     transition.setCycleCount(1);
+                    transition.setInterpolator(Interpolator.LINEAR);
                     transition.setOnFinished(actionEvent -> {
                         // if (enemy.getHealth() != 0) { // for when enemies can die
-                        MainGame.getCenter().getChildren().remove(enemy.getDisplay());
+                        MainGame.getCenter().getChildren().remove(enemyDisplay);
                         if (PlayerInfo.getHealth() - damage < 0) {
                             PlayerInfo.setHealth(0); // can be changed later
                         } else {
