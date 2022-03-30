@@ -82,6 +82,9 @@ public class Controller extends Application {
     public static int getScreenWidth() {
         return SCREEN_WIDTH;
     }
+    public static Stage getWindow() {
+        return window;
+    }
     /**
      * Main method that launches the game.
      *

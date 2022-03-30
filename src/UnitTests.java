@@ -1,5 +1,8 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotEquals;
+
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 
@@ -97,9 +100,9 @@ public class UnitTests {
      */
     @Test(timeout = TIMEOUT)
     public void checkEnemyColors() {
-        Enemy p = new PurpleEnemy(15);
-        Enemy y = new YellowEnemy(15);
-        Enemy o = new OrangeEnemy(15);
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
         assertEquals(p.getDisplay().getFill(), Color.PURPLE);
         assertEquals(y.getDisplay().getFill(), Color.YELLOW);
         assertEquals(o.getDisplay().getFill(), Color.ORANGE);
@@ -109,9 +112,9 @@ public class UnitTests {
      */
     @Test(timeout = TIMEOUT)
     public void checkHealthFunctionalities() {
-        Enemy p = new PurpleEnemy(15);
-        Enemy y = new YellowEnemy(15);
-        Enemy o = new OrangeEnemy(15);
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
         p.setHealth(30);
         y.setHealth(30);
         o.setHealth(30);
@@ -151,17 +154,21 @@ public class UnitTests {
 
 
     @Test(timeout = TIMEOUT)
-    public void checkGameOverReset() {
-        PlayerInfo.setDifficulty(1);
-        InitialConfig.reset();
-        assertEquals(PlayerInfo.getDifficulty(), -1);
+    public void checkReset() {
+        PlayerInfo.setMoney(-1);
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
+        assertEquals(PlayerInfo.getMoney(), 100);
     }
 
     @Test(timeout = TIMEOUT)
-    public void checkInCombat() {
-        StartCombat start = new StartCombat();
-        start.startCombat();
-        assertEquals(start.getInCombat(), true);
+    public void checkDifferingHealth() {
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
+        assertNotEquals(p.getHealth(), y.getHealth());
+        assertNotEquals(o.getHealth(), y.getHealth());
+        assertNotEquals(p.getHealth(), o.getHealth());
     }
 
     @Test(timeout = TIMEOUT)

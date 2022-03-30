@@ -6,6 +6,6 @@ checkStoreDisplayyAfterEnd: This unit test verifies that the player is not able 
 
 checkStartCombatPrompt: This unit test verifies that there is a start combat button. This test is relevant because it ensures that we are prompted with the start combat button to begin the game on the game screen. 
 
-checkInCombat: This unit test begins a round of combat and checks that the game correctly detects that it is in combat. This test is relevant because the game needs to change functionality depending on whether it is in combat.
+checkDifferingHealth: This unit test creates an enemy of each type and checks that their healths are different. This is relevant because the types of enemies should differ in how much health they have.
 
-checkGameOverReset: This unit test changes the difficulty and then resets the game to check that the difficulty is changed back to the initial value. This test is relevant because the game needs to be reset properly after the player triggers a game over. 
+checkReset: This unit test sets the difficulty, changes the money, and then resets the game to check that the money is changed back to the initial value. This test is relevant because the game needs to be reset properly after the player triggers a game over. 

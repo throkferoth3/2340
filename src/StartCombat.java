@@ -34,7 +34,7 @@ public class StartCombat {
     }
 
     public void startCombat() {
-        inCombat = true;
+        setInCombat(true);
         makeTimer().scheduleAtFixedRate(spawnEnemies(5, 5, 1), 0, 1000);
     }
 
@@ -45,7 +45,7 @@ public class StartCombat {
     public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage) {
         TimerTask enemySpawner = new TimerTask() {
             int enemyIndicator = 0;
-            Enemy enemy = new PurpleEnemy(15);
+            Enemy enemy = new PurpleEnemy();
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -56,15 +56,15 @@ public class StartCombat {
                     }
                     switch (enemyIndicator) {
                         case 0:
-                            enemy = new PurpleEnemy(15);
+                            enemy = new PurpleEnemy();
                             enemyIndicator++;
                             break;
                         case 1:
-                            enemy = new YellowEnemy(15);
+                            enemy = new YellowEnemy();
                             enemyIndicator++;
                             break;
                         case 2:
-                            enemy = new OrangeEnemy(15);
+                            enemy = new OrangeEnemy();
                             enemyIndicator = 0;
                             break;
                     }
@@ -90,7 +90,9 @@ public class StartCombat {
         };
         return enemySpawner;
     }
-
+    public static void setInCombat(boolean c) {
+        inCombat = c;
+    }
     public static boolean getInCombat() {
         return inCombat;
     }
