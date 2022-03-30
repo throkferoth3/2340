@@ -79,11 +79,7 @@ public class StartCombat {
                     transition.setOnFinished(actionEvent -> {
                         // if (enemy.getHealth() != 0) { // for when enemies can die
                         MainGame.getCenter().getChildren().remove(enemyDisplay);
-                        if (PlayerInfo.getHealth() - damage < 0) {
-                            PlayerInfo.setHealth(0); // can be changed later
-                        } else {
-                            PlayerInfo.setHealth(PlayerInfo.getHealth() - damage); // can be changed later
-                        }
+                        PlayerInfo.takeDamage(damage);
                         MainGame.updateHealthText();
                         //}
                     });

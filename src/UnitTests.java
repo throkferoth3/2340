@@ -163,4 +163,26 @@ public class UnitTests {
         start.startCombat();
         assertEquals(start.getInCombat(), true);
     }
+
+    @Test(timeout = TIMEOUT)
+    public void playerTakeDamage() {
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
+        PlayerInfo.takeDamage(1);
+        assertEquals(PlayerInfo.getHealth(), 19);
+    }
+
+    @Test(timeout = TIMEOUT)
+    public void moneyVariesBasedOnDifficulty() {
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
+        assertEquals(100, PlayerInfo.getMoney());
+        PlayerInfo.setDifficulty(1);
+        PlayerInfo.initHealthAndMoney();
+        assertEquals(75, PlayerInfo.getMoney());
+        PlayerInfo.setDifficulty(2);
+        PlayerInfo.initHealthAndMoney();
+        assertEquals(50, PlayerInfo.getMoney());
+    }
+
 }

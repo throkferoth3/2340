@@ -31,6 +31,15 @@ public class PlayerInfo {
             Controller.switchToGameOver();
         }
     }
+
+    public static void takeDamage(int damage) {
+        if (PlayerInfo.getHealth() - damage < 0) {
+            PlayerInfo.setHealth(0);
+        } else {
+            PlayerInfo.setHealth(PlayerInfo.getHealth() - damage);
+        }
+    }
+
     public static void setName(String n) {
         name = n;
     }
