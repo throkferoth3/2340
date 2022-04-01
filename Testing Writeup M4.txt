@@ -8,6 +8,8 @@ checkEnemyDamage: This unit test verfies that the enemy's have there designated 
 
 checkReset: This unit test sets the difficulty, changes the money, and then resets the game to check that the money is changed back to the initial value. This test is relevant because the game needs to be reset properly after the player triggers a game over.
 
+checkDifferingHealth: This unit test verifies that every enemy has a different amount of health. This test is relavent because it shows that there is variation between the different enemies.
+
 playerTakeDamage: This unit test sets the difficulty to easy and has the player take 1 damage. Then it checks to see if the playerInfo changed accordingly. This test is relevant because if the player info did not change correctly, the player's actual health did not decrease.
 
 checkEnemyShape: This unit test creates 1 of each type of enemy and checks to see if they are all the correct shape. This test is relevant because we want all the enemies to be a circle type shape. It may cause bugs later on when we try to change the size of the enemy but fail because the shape is not correct.
