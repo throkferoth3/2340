@@ -2,7 +2,7 @@ checkEnemyColors: This unit test check that the three different types of enemies
         
 checkHealthFunctionalities: This unit test verifies that the health of the three different types of enemies can be properly accessed and altered. This test is relevant because it confirms that the classes for each type of enemy correctly extend the abstract Enemy class, which will allow us to make changes to the enemies' stats as the game progresses.
 
-checkPlaceTowerAfterEnd: This unit test verifies that the player is not able to place a tower after the monument has reached 0 health. This confirms that the game has ended and the player can no longer place towers.
+checkEnemyHealth: This unit test verifies that the enemy's have there designated health. This shows that the enemy's all have the correct health.
 
 checkStartCombatPrompt: This unit test verifies that there is a start combat button. This test is relevant because it ensures that we are prompted with the start combat button to begin the game on the game screen. 
 
