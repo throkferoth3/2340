@@ -137,11 +137,13 @@ public class UnitTests {
     
     @Test(timeout = TIMEOUT)
 
-    public void checkResetSecondDifficulty() {
-        PlayerInfo.setMoney(-1);
-        PlayerInfo.setDifficulty(1);
-        PlayerInfo.initHealthAndMoney();
-        assertEquals(PlayerInfo.getMoney(), 75);
+    public void checkEnemyDamage() {
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
+        assertEquals(y.getDamage(), 5);
+        assertEquals(o.getDamage(), 10);
+        assertEquals(p.getDamage(), 15);
     }
 
 
