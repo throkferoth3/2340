@@ -136,7 +136,7 @@ public class UnitTests {
     }
     
     @Test(timeout = TIMEOUT)
-    public void checkResetSecondDifficulty(){
+    public void checkResetSecondDifficulty() {
         PlayerInfo.setMoney(-1);
         PlayerInfo.setDifficulty(1);
         PlayerInfo.initHealthAndMoney();
