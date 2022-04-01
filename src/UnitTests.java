@@ -125,16 +125,13 @@ public class UnitTests {
     }
 
     @Test(timeout = TIMEOUT)
-    public void checkPlaceTowerAfterEnd() {
-        PlayerInfo.setHealth(0);
-        boolean error = false;
-        Tower t = new RedTower(0d, 0d);
-        try {
-            PlayerInfo.addTower(t);
-        } catch (Exception e) {
-            error = true;
-        }
-        Assert.assertTrue(error);
+    public void checkEnemyHealth() {
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
+        assertEquals(y.getHealth(), 10);
+        assertEquals(o.getHealth(), 15);
+        assertEquals(p.getHealth(), 20);
     }
     
     @Test(timeout = TIMEOUT)
@@ -145,7 +142,7 @@ public class UnitTests {
         if (sc.getDisplay() == null){
             error = true;
         }
-        Assert.assertFalse(error);
+        assertFalse(error);
     }
 
 
