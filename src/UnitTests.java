@@ -125,17 +125,12 @@ public class UnitTests {
     }
 
     @Test(timeout = TIMEOUT)
-    public void checkStoreDisplayAfterEnd() {
-        PlayerInfo.setDifficulty(0);
-        PlayerInfo.initHealthAndMoney();
-        ShopEntry shop = new ShopEntry();
-        PlayerInfo.setMoney(0);
+    public void checkPlaceTowerAfterEnd() {
         PlayerInfo.setHealth(0);
         boolean error = false;
+        Tower t = new RedTower(0d, 0d);
         try {
-            shop.setCost(new int[]{0, 0, 0});
-            Button b = shop.getDisplay();
-            b.fire();
+            PlayerInfo.addTower(t);
         } catch (Exception e) {
             error = true;
         }
