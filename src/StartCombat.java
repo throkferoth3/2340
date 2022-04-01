@@ -2,7 +2,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import javafx.scene.shape.Polyline;
@@ -12,21 +11,19 @@ import java.util.TimerTask;
 
 public class StartCombat {
 
-    Path path = new Path();
-    double X;
-    double Y;
+    private Path path = new Path();
+    private double x;
+    private double y;
     private Button startCombatButton = new Button("start combat");
     private int counter = 0;
     private Polyline pathLine = new Polyline();
     private static boolean inCombat = false;
 
     public StartCombat() {
-        X = path.getDisplay().getX();
-        Y = path.getDisplay().getY() + 31;
-        pathLine.getPoints().addAll(new Double[] {
-                X, Y,
-                (double) Controller.getScreenWidth() - 195, Y
-        });
+        x = path.getDisplay().getX();
+        y = path.getDisplay().getY() + 31;
+        pathLine.getPoints().addAll(new Double[] {x, y,
+            (double) Controller.getScreenWidth() - 195, y});
     }
 
     public Button getDisplay() {
@@ -44,8 +41,8 @@ public class StartCombat {
 
     public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage) {
         TimerTask enemySpawner = new TimerTask() {
-            int enemyIndicator = 0;
-            Enemy enemy = new PurpleEnemy();
+            private int enemyIndicator = 0;
+            private Enemy enemy = new PurpleEnemy();
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -55,18 +52,20 @@ public class StartCombat {
                         cancel();
                     }
                     switch (enemyIndicator) {
-                        case 0:
-                            enemy = new PurpleEnemy();
-                            enemyIndicator++;
-                            break;
-                        case 1:
-                            enemy = new YellowEnemy();
-                            enemyIndicator++;
-                            break;
-                        case 2:
-                            enemy = new OrangeEnemy();
-                            enemyIndicator = 0;
-                            break;
+                    case 0:
+                        enemy = new PurpleEnemy();
+                        enemyIndicator++;
+                        break;
+                    case 1:
+                        enemy = new YellowEnemy();
+                        enemyIndicator++;
+                        break;
+                    case 2:
+                        enemy = new OrangeEnemy();
+                        enemyIndicator = 0;
+                        break;
+                    default:
+                        break;
                     }
                     Circle enemyDisplay = enemy.getDisplay();
                     MainGame.getCenter().getChildren().add(enemyDisplay);

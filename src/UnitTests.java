@@ -109,7 +109,8 @@ public class UnitTests {
         assertEquals(o.getDisplay().getFill(), Color.ORANGE);
     }
     /**
-     * M4 unit test to verify that the healths of the different types of enemies can be properly accessed and altered.
+     * M4 unit test to verify that the healths of the different types of enemies
+     * can be properly accessed and altered.
      */
     @Test(timeout = TIMEOUT)
     public void checkHealthFunctionalities() {
@@ -135,11 +136,11 @@ public class UnitTests {
     }
     
     @Test(timeout = TIMEOUT)
-    public void checkStartCombatPrompt(){
+    public void checkStartCombatPrompt() {
         StartCombat sc = new StartCombat();
         sc.getDisplay();
         boolean error = false;
-        if (sc.getDisplay() == null){
+        if (sc.getDisplay() == null) {
             error = true;
         }
         assertFalse(error);

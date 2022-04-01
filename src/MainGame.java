@@ -1,19 +1,13 @@
-import javafx.animation.PathTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Button;
-import javafx.util.Duration;
 
-import java.awt.*;
 
 public class MainGame {
     private static BorderPane mainPane = new BorderPane();
@@ -157,7 +151,9 @@ public class MainGame {
     public static Text getMoneyText() {
         return moneyText;
     }
-    public static void updateHealthText() {healthText.setText("Health: " + PlayerInfo.getHealth());};
+    public static void updateHealthText() {
+        healthText.setText("Health: " + PlayerInfo.getHealth());
+    }
     public static Text getInsufficientMoneyText() {
         return insufficientMoneyText;
     }
