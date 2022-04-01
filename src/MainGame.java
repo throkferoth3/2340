@@ -36,6 +36,13 @@ public class MainGame {
 
     public static void initialize() {
         PlayerInfo.initHealthAndMoney();
+        for (int i = center.getChildren().size() - 1; i >= 0; i--) {
+            if (center.getChildren().get(i) instanceof Rectangle
+                && ((Rectangle) center.getChildren().get(i)).getHeight() == 30
+                && ((Rectangle) center.getChildren().get(i)).getWidth() == 30) {
+                center.getChildren().remove(center.getChildren().get(i));
+            }
+        }
         moneyText.setText("Money: " + PlayerInfo.getMoney() + " ");
         healthText.setText("Health: " + PlayerInfo.getHealth());
     }
