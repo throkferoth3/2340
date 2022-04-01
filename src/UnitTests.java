@@ -136,14 +136,11 @@ public class UnitTests {
     }
     
     @Test(timeout = TIMEOUT)
-    public void checkStartCombatPrompt() {
-        StartCombat sc = new StartCombat();
-        sc.getDisplay();
-        boolean error = false;
-        if (sc.getDisplay() == null) {
-            error = true;
-        }
-        assertFalse(error);
+    public void checkResetSecondDifficulty(){
+        PlayerInfo.setMoney(-1);
+        PlayerInfo.setDifficulty(1);
+        PlayerInfo.initHealthAndMoney();
+        assertEquals(PlayerInfo.getMoney(), 75);
     }
 
 

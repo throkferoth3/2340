@@ -6,7 +6,7 @@ checkEnemyHealth: This unit test verifies that the enemy's have there designated
 
 checkStartCombatPrompt: This unit test verifies that there is a start combat button. This test is relevant because it ensures that we are prompted with the start combat button to begin the game on the game screen. 
 
-checkDifferingHealth: This unit test creates an enemy of each type and checks that their healths are different. This is relevant because the types of enemies should differ in how much health they have.
+checkResetSecondDifficulty: This unit test sets the difficulty, changes the money, and then resets the game to check that the money is changed back to the initial value for difficulty = 1. This test is necessry because the game needs to reset to the appropriate dofficulty after a game over. 
 
 checkReset: This unit test sets the difficulty, changes the money, and then resets the game to check that the money is changed back to the initial value. This test is relevant because the game needs to be reset properly after the player triggers a game over.
 
