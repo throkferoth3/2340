@@ -49,5 +49,5 @@ abstract class Tower {
         return false;
     }
 
-
+    //abstract public boolean inRange(double x, double y);
 }

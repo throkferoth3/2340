@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PlayerInfo {
     private static int difficulty;
@@ -6,6 +7,7 @@ public class PlayerInfo {
     private static int health;
     private static String name;
     private static ArrayList<Tower> ownedTowers = new ArrayList<Tower>();
+    private static HashMap<Integer, Enemy> enemyHashMap = new HashMap<>();
 
     public static int getDifficulty() {
         return difficulty;
@@ -50,6 +52,9 @@ public class PlayerInfo {
     public static ArrayList<Tower> getTowerList() {
         return ownedTowers;
     }
+    public static HashMap<Integer, Enemy> getEnemyMap() {
+        return enemyHashMap;
+    }
     public static void initHealthAndMoney() {
         ownedTowers.clear();
 
@@ -85,5 +90,4 @@ public class PlayerInfo {
         }
         return true;
     }
-
 }

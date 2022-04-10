@@ -1,6 +1,10 @@
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
@@ -42,7 +46,7 @@ public class StartCombat {
     public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage) {
         TimerTask enemySpawner = new TimerTask() {
             private int enemyIndicator = 0;
-            private Enemy enemy = new PurpleEnemy();
+            private Enemy enemy;
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -55,14 +59,47 @@ public class StartCombat {
                     case 0:
                         enemy = new PurpleEnemy();
                         enemyIndicator++;
+                        PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
+
+                        DoubleProperty xValue0 = new SimpleDoubleProperty();
+                        xValue0.bind(enemy.getDisplay().translateXProperty());
+                        xValue0.addListener(new ChangeListener() {
+                            @Override
+                            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+                                enemy.setX((double) arg2);
+                            }
+                        });
+
                         break;
                     case 1:
                         enemy = new YellowEnemy();
                         enemyIndicator++;
+                        PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
+
+                        DoubleProperty xValue1 = new SimpleDoubleProperty();
+                        xValue1.bind(enemy.getDisplay().translateXProperty());
+                        xValue1.addListener(new ChangeListener() {
+                            @Override
+                            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+                                enemy.setX((double) arg2);
+                            }
+                        });
+
                         break;
                     case 2:
                         enemy = new OrangeEnemy();
                         enemyIndicator = 0;
+                        PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
+
+                        DoubleProperty xValue2 = new SimpleDoubleProperty();
+                        xValue2.bind(enemy.getDisplay().translateXProperty());
+                        xValue2.addListener(new ChangeListener() {
+                            @Override
+                            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+                                enemy.setX((double) arg2);
+                            }
+                        });
+
                         break;
                     default:
                         break;
@@ -80,6 +117,7 @@ public class StartCombat {
                         MainGame.getCenter().getChildren().remove(enemyDisplay);
                         PlayerInfo.takeDamage(damage);
                         MainGame.updateHealthText();
+                        PlayerInfo.getEnemyMap().remove(enemy.getId());
                         //}
                     });
                     counter += 1;
