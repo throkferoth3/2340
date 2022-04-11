@@ -88,6 +88,7 @@ public class MainGame {
         startCombat.getDisplay().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                MainGame.getTopUI().getChildren().remove(startCombat.getDisplay());
                 if (!StartCombat.getInCombat()) {
                     startCombat.startCombat();
                 }
@@ -150,6 +151,7 @@ public class MainGame {
     public Scene getScene() {
         return scene;
     }
+    public static HBox getTopUI() { return topUI; }
     public static Boolean getPlacementActive() {
         return placementActive;
     }

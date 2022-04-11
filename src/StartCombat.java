@@ -19,7 +19,7 @@ public class StartCombat {
     private double x;
     private double y;
     private Button startCombatButton = new Button("start combat");
-    private int counter = 0;
+    private int counter = 1;
     private Polyline pathLine = new Polyline();
     private static boolean inCombat = false;
 
@@ -36,16 +36,29 @@ public class StartCombat {
 
     public void startCombat() {
         setInCombat(true);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(5, 5, 1), 0, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(2, 5, 1, 0), 0, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(2, 5, 1, 1), 2000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(2, 5, 1, 2), 4000, 1000);
+        TimerTask buttonRespawn = new TimerTask() {
+            private Enemy enemy;
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    setInCombat(false);
+                    MainGame.getTopUI().getChildren().add(getDisplay());
+                    cancel();
+                });
+            }
+        };
+        makeTimer().scheduleAtFixedRate(buttonRespawn, 10000, 1000);
     }
 
     public Timer makeTimer() {
         return new Timer();
     }
 
-    public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage) {
+    public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage, int enemyIndicator) {
         TimerTask enemySpawner = new TimerTask() {
-            private int enemyIndicator = 0;
             private Enemy enemy;
             @Override
             public void run() {
@@ -58,52 +71,29 @@ public class StartCombat {
                     switch (enemyIndicator) {
                     case 0:
                         enemy = new PurpleEnemy();
-                        enemyIndicator++;
-                        PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
-
-                        DoubleProperty xValue0 = new SimpleDoubleProperty();
-                        xValue0.bind(enemy.getDisplay().translateXProperty());
-                        xValue0.addListener(new ChangeListener() {
-                            @Override
-                            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-                                enemy.setX((double) arg2);
-                            }
-                        });
 
                         break;
                     case 1:
                         enemy = new YellowEnemy();
-                        enemyIndicator++;
-                        PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
-
-                        DoubleProperty xValue1 = new SimpleDoubleProperty();
-                        xValue1.bind(enemy.getDisplay().translateXProperty());
-                        xValue1.addListener(new ChangeListener() {
-                            @Override
-                            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-                                enemy.setX((double) arg2);
-                            }
-                        });
 
                         break;
                     case 2:
                         enemy = new OrangeEnemy();
-                        enemyIndicator = 0;
-                        PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
-
-                        DoubleProperty xValue2 = new SimpleDoubleProperty();
-                        xValue2.bind(enemy.getDisplay().translateXProperty());
-                        xValue2.addListener(new ChangeListener() {
-                            @Override
-                            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-                                enemy.setX((double) arg2);
-                            }
-                        });
 
                         break;
                     default:
                         break;
                     }
+                    PlayerInfo.getEnemyMap().put(enemy.getId(), enemy);
+
+                    DoubleProperty xValue0 = new SimpleDoubleProperty();
+                    xValue0.bind(enemy.getDisplay().translateXProperty());
+                    xValue0.addListener(new ChangeListener() {
+                        @Override
+                        public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+                            enemy.setX((double) arg2);
+                        }
+                    });
                     Circle enemyDisplay = enemy.getDisplay();
                     MainGame.getCenter().getChildren().add(enemyDisplay);
                     PathTransition transition = new PathTransition();
