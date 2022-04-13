@@ -1,7 +1,7 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 /**
- * One of the 3 types of towers. This will be further implemented with variation later on.
+ * One of the 3 types of towers. This tower slows enemies by 10 percent.
  */
 public class BlueTower extends Tower {
     public BlueTower(Double x, Double y) {

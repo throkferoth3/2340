@@ -1,5 +1,7 @@
 import javafx.scene.shape.*;
 
+import java.util.ArrayList;
+
 abstract class Enemy {
     protected static int idCount = 0;
     public Enemy() {
@@ -12,6 +14,17 @@ abstract class Enemy {
     protected int damage;
     protected double x;
     protected double y = Controller.getScreenHeight() / 2d - 100 + 31;
+
+    /**
+     * List of towers that have already attacked this enemy.
+     */
+    private ArrayList<Tower> attackers = new ArrayList<Tower>();
+    public void addAttacker(Tower t) {
+        attackers.add(t);
+    }
+    public ArrayList<Tower> getAttackers() {
+        return attackers;
+    }
 
     public double getX() {
         return x;
