@@ -40,19 +40,36 @@ public class StartCombat {
 
     public void startCombat() {
         setInCombat(true);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5, 1, 0), 0, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5, 1, 0), 1000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5, 1, 1), 2000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5, 1, 1), 3000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5, 1, 2), 4000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5, 1, 2), 5000, 1000);
-        makeTimer().scheduleAtFixedRate(attackEnemies(), 0, 500);
+        int numBlue = 0;
+        for (Tower t : PlayerInfo.getTowerList()) {
+            if (t instanceof BlueTower) {
+                numBlue++;
+            }
+        }
+        double slowRatio = 1;
+        for (int i = 0; i < numBlue; i++) {
+            slowRatio *= 1.1;
+        }
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 0), 0, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 0), 1000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 1), 2000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 1), 3000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 2), 4000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 2), 5000, 1000);
+        makeTimer().scheduleAtFixedRate(attackEnemies(), 0, 100);
         TimerTask buttonRespawn = new TimerTask() {
             private Enemy enemy;
             @Override
             public void run() {
                 Platform.runLater(() -> {
                     setInCombat(false);
+                    int numGreen = 0;
+                    for (Tower t : PlayerInfo.getTowerList()) {
+                        if (t instanceof GreenTower) {
+                            numGreen++;
+                        }
+                    }
+                    PlayerInfo.setHealth(PlayerInfo.getHealth() + numGreen);
                     MainGame.getTopUI().getChildren().add(getDisplay());
                     cancel();
                 });
@@ -65,7 +82,7 @@ public class StartCombat {
         return new Timer();
     }
 
-    public TimerTask spawnEnemies(int numberOfEnemies, int speed, int damage, int enemyIndicator) {
+    public TimerTask spawnEnemies(int numberOfEnemies, double speed, int damage, int enemyIndicator) {
         TimerTask enemySpawner = new TimerTask() {
             private Enemy enemy;
             @Override
@@ -111,12 +128,12 @@ public class StartCombat {
                     transition.setCycleCount(1);
                     transition.setInterpolator(Interpolator.LINEAR);
                     transition.setOnFinished(actionEvent -> {
-                        // if (enemy.getHealth() != 0) { // for when enemies can die
                         MainGame.getCenter().getChildren().remove(enemyDisplay);
-                        PlayerInfo.takeDamage(damage);
+                        if (enemy.getDamage() != 0) {
+                            PlayerInfo.takeDamage(damage);
+                        }
                         MainGame.updateHealthText();
                         PlayerInfo.getEnemyMap().remove(enemy.getId());
-                        //}
                     });
                     counter += 1;
                     transition.play();
@@ -129,47 +146,54 @@ public class StartCombat {
         TimerTask enemyAttacker = new TimerTask() {
             @Override
             public void run() {
-
-                    ArrayList<Integer> arr = new ArrayList<Integer>();
-                    for (Tower t : PlayerInfo.getTowerList()) {
-                        for (Integer i : PlayerInfo.getEnemyMap().keySet()) {
-                            Enemy e = PlayerInfo.getEnemyMap().get(i);
-                            if (t.getPosX() - e.getX() <= 20 && t.getPosX() - e.getX() >= -20) {
-                                if (t instanceof RedTower) {
-                                    Platform.runLater(() -> {
-                                        Circle bullet = new Circle();
-                                        bullet.setFill(Color.RED);
-                                        bullet.setRadius(5);
-                                        bullet.setCenterX(t.getPosX());
-                                        bullet.setCenterY(t.getPosY());
-                                        MainGame.getCenter().getChildren().add(bullet);
-                                        PathTransition transition = new PathTransition();
-                                        transition.setNode(bullet);
-                                        transition.setDuration(Duration.millis(100));
-                                        Line line = new Line();
-                                        line.setStartX(t.getPosX());
-                                        line.setStartY(t.getPosY());
-                                        line.setEndX(e.getX());
-                                        line.setEndY(e.getY());
-                                        transition.setPath(line);
-                                        transition.setCycleCount(1);
-                                        transition.setInterpolator(Interpolator.LINEAR);
-                                        transition.setOnFinished(actionEvent -> {
-                                            MainGame.getCenter().getChildren().remove(bullet);
-                                        });
-                                        transition.play();
-                                        while (Platform.isNestedLoopRunning()) {
-                                            continue;
-                                        }
+                ArrayList<Integer> arr = new ArrayList<Integer>();
+                for (Tower t : PlayerInfo.getTowerList()) {
+                    for (Integer i : PlayerInfo.getEnemyMap().keySet()) {
+                        Enemy e = PlayerInfo.getEnemyMap().get(i);
+                        if (t.getPosX() - e.getX() <= 20 && t.getPosX() - e.getX() >= -20) {
+                            if (t instanceof RedTower) {
+                                Platform.runLater(() -> {
+                                    Circle bullet = new Circle();
+                                    bullet.setFill(Color.RED);
+                                    bullet.setRadius(5);
+                                    bullet.setCenterX(t.getPosX() + 15);
+                                    bullet.setCenterY(t.getPosY() + 15);
+                                    MainGame.getCenter().getChildren().add(bullet);
+                                    PathTransition transition = new PathTransition();
+                                    transition.setNode(bullet);
+                                    transition.setDuration(Duration.millis(100));
+                                    Line line = new Line();
+                                    line.setStartX(t.getPosX() + 15);
+                                    line.setStartY(t.getPosY() + 15);
+                                    line.setEndX(e.getX());
+                                    line.setEndY(e.getY());
+                                    transition.setPath(line);
+                                    transition.setCycleCount(1);
+                                    transition.setInterpolator(Interpolator.LINEAR);
+                                    transition.setOnFinished(actionEvent -> {
+                                        MainGame.getCenter().getChildren().remove(bullet);
                                     });
-                                }
-                                arr.add(e.getId());
+
+                                    if (e.getHealth() > 0 && !e.getAttackers().contains(t)) {
+                                        e.setHealth(e.getHealth() - 5);
+                                    } else if (e.getHealth() <= 0) {
+                                        MainGame.getCenter().getChildren().remove(e.getDisplay());
+                                        e.setDamage(0);
+                                        arr.add(e.getId());
+                                    }
+                                    if (!arr.contains(e.getId()) && !e.getAttackers().contains(t)) {
+                                        e.addAttacker(t);
+                                        transition.play();
+                                    }
+                                });
                             }
                         }
                     }
                     for (Integer i : arr) {
                         PlayerInfo.getEnemyMap().remove(i);
                     }
+                    arr.clear();
+                }
             }
         };
         return enemyAttacker;

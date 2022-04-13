@@ -24,8 +24,8 @@ public class MainGame {
     private static Monument monument;
 
     private ShopEntry redShop = new ShopEntry(new int[] {15, 20, 25}, 0, "RED");
-    private ShopEntry greenShop = new ShopEntry(new int[] {10, 15, 20}, 1, "GREEN");
-    private ShopEntry blueShop = new ShopEntry(new int[] {20, 25, 30}, 2, "BLUE");
+    private ShopEntry greenShop = new ShopEntry(new int[] {25, 30, 35}, 1, "GREEN");
+    private ShopEntry blueShop = new ShopEntry(new int[] {15, 20, 25}, 2, "BLUE");
 
     private StartCombat startCombat = new StartCombat();
 
