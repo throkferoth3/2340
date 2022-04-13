@@ -1,0 +1,6 @@
+- Bloater: Long Parameter List in the spawnEnemies() method of the StartCombat class. This method has four parameters,
+           with one of them (damage) not being necessary. This code smell exists because we had not yet decided that we
+           wanted to make the damage always 1. Because of this, we just created a parameter for damage.
+           I fixed this code smell by removing the damage parameter from the method header. Additionally, I edited the
+           spawnEnemies method by replacing any references to the old damage parameter with the constant value of 1.
+           This allowed the spawnEnemies() method calls to be more concise and readable.

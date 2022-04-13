@@ -182,5 +182,17 @@ public class UnitTests {
         assertTrue(y.getDisplay() instanceof Circle);
         assertTrue(o.getDisplay() instanceof Circle);
     }
-
+    @Test(timeout = TIMEOUT)
+    public void checkAttackersEmpty() {
+        Enemy e = new PurpleEnemy();
+        int size = e.getAttackers().size();
+        assertEquals(0, size);
+    }
+    @Test(timeout = TIMEOUT)
+    public void testAddAttackers() {
+        Enemy e = new PurpleEnemy();
+        Tower t = new RedTower(1.0, 1.0);
+        e.addAttacker(t);
+        assertTrue(e.getAttackers().contains(t));
+    }
 }

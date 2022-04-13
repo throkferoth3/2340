@@ -50,12 +50,12 @@ public class StartCombat {
         for (int i = 0; i < numBlue; i++) {
             slowRatio *= 1.1;
         }
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 0), 0, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 0), 1000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 1), 2000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 1), 3000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 2), 4000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1, 2), 5000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 0, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 1000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1), 2000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1), 3000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 2), 4000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 2), 5000, 1000);
         makeTimer().scheduleAtFixedRate(attackEnemies(), 0, 100);
         TimerTask buttonRespawn = new TimerTask() {
             private Enemy enemy;
@@ -82,7 +82,7 @@ public class StartCombat {
         return new Timer();
     }
 
-    public TimerTask spawnEnemies(int numberOfEnemies, double speed, int damage, int enemyIndicator) {
+    public TimerTask spawnEnemies(int numberOfEnemies, double speed, int enemyIndicator) {
         TimerTask enemySpawner = new TimerTask() {
             private Enemy enemy;
             @Override
@@ -130,7 +130,7 @@ public class StartCombat {
                     transition.setOnFinished(actionEvent -> {
                         MainGame.getCenter().getChildren().remove(enemyDisplay);
                         if (enemy.getDamage() != 0) {
-                            PlayerInfo.takeDamage(damage);
+                            PlayerInfo.takeDamage(1);
                         }
                         MainGame.updateHealthText();
                         PlayerInfo.getEnemyMap().remove(enemy.getId());

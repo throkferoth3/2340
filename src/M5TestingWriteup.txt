@@ -1,0 +1,7 @@
+- checkAttackersEmpty(): This unit test checks to see that for a newly created Enemy object, its attackers list is
+  initially empty. Additionally, by doing this, the test also verifies that the list is not initially null. This test
+  is relevant because it covers the time period when an enemy has just been created and has yet to be attacked.
+
+- testAddAttackers(): This unit test verifies that the addAttacker() method is working properly. In other words, it
+  is making sure that we are able to add towers to the attackers list when an enemy is attacked. THis test is relevant
+  because it verifies an extremely important functionality involved in the combat stages of the game.
