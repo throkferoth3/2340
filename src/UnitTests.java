@@ -3,6 +3,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -207,12 +208,10 @@ public class UnitTests {
     }
 
     @Test(timeout = TIMEOUT)
-    public void testAddHealth() {
-        PlayerInfo.setDifficulty(0);
-        PlayerInfo.initHealthAndMoney();
-        Tower t = new GreenTower(1.0, 1.0);
-        t.addHealth();
-        assertEquals(21, PlayerInfo.getHealth());
+    public void testEnemyHealthIndicator() {
+        Enemy e = new Enemy();
+        Text test = e.getEnemyHealthText();
+        assertNotNull(test);
     }
 
     @Test(timeout = TIMEOUT)
