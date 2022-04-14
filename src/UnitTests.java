@@ -201,10 +201,11 @@ public class UnitTests {
     }
 
     @Test(timeout = TIMEOUT)
-    public void testDeleteEnemy() {
+    public void testUpdateHealth() {
         PurpleEnemy p = new PurpleEnemy();
         p.setHealth(0);
-        assertNull(p);
+        Text test = p.updateHealth();
+        assertEquals("" + p.getHealth(), test.getText());
     }
 
     @Test(timeout = TIMEOUT)
