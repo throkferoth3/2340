@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -52,10 +53,10 @@ public class StartCombat {
         }
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 0, 1000);
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 1000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1), 2000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 1), 3000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 2), 4000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 2), 5000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio, 1), 2000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio, 1), 3000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 2), 4000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 2), 5000, 1000);
         makeTimer().scheduleAtFixedRate(attackEnemies(), 0, 100);
         TimerTask buttonRespawn = new TimerTask() {
             private Enemy enemy;
@@ -75,7 +76,7 @@ public class StartCombat {
                 });
             }
         };
-        makeTimer().scheduleAtFixedRate(buttonRespawn, 10000, 1000);
+        //makeTimer().scheduleAtFixedRate(buttonRespawn, 10000, 1000);
     }
 
     public Timer makeTimer() {
@@ -119,7 +120,7 @@ public class StartCombat {
                             enemy.setX((double) arg2);
                         }
                     });
-                    Circle enemyDisplay = enemy.getDisplay();
+                    StackPane enemyDisplay = enemy.getDisplay();
                     MainGame.getCenter().getChildren().add(enemyDisplay);
                     PathTransition transition = new PathTransition();
                     transition.setNode(enemyDisplay); // set to enemy later
@@ -129,11 +130,23 @@ public class StartCombat {
                     transition.setInterpolator(Interpolator.LINEAR);
                     transition.setOnFinished(actionEvent -> {
                         MainGame.getCenter().getChildren().remove(enemyDisplay);
-                        if (enemy.getDamage() != 0) {
-                            PlayerInfo.takeDamage(1);
+                        if (enemy.getHealth() > 0) {
+                            PlayerInfo.takeDamage(enemy.getDamage());
                         }
                         MainGame.updateHealthText();
                         PlayerInfo.getEnemyMap().remove(enemy.getId());
+                        if (PlayerInfo.getEnemyMap().isEmpty()) {
+                            setInCombat(false);
+                            int numGreen = 0;
+                            for (Tower t : PlayerInfo.getTowerList()) {
+                                if (t instanceof GreenTower) {
+                                    numGreen++;
+                                }
+                            }
+                            PlayerInfo.setHealth(PlayerInfo.getHealth() + numGreen);
+                            MainGame.updateHealthText();
+                            MainGame.getTopUI().getChildren().add(getDisplay());
+                        }
                     });
                     counter += 1;
                     transition.play();
@@ -175,9 +188,12 @@ public class StartCombat {
                                     });
 
                                     if (e.getHealth() > 0 && !e.getAttackers().contains(t)) {
-                                        e.setHealth(e.getHealth() - 5);
+                                        e.setHealth(e.getHealth() - 1);
+                                        e.updateHealth();
                                     } else if (e.getHealth() <= 0) {
                                         MainGame.getCenter().getChildren().remove(e.getDisplay());
+                                        PlayerInfo.setMoney(PlayerInfo.getMoney() + 3);
+                                        MainGame.updateMoneyText();
                                         e.setDamage(0);
                                         arr.add(e.getId());
                                     }
