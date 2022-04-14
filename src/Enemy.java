@@ -11,7 +11,7 @@ abstract class Enemy {
     private Circle display = new Circle(15);
     protected int id;
     protected int health;
-    protected int d;
+    protected int damage;
     protected double x;
     protected double y = Controller.getScreenHeight() / 2d - 100 + 31;
 
@@ -49,9 +49,9 @@ abstract class Enemy {
         health = newHealth;
     }
     public int getDamage() {
-        return d;
+        return damage;
     }
     public void setDamage(int newDamage) {
-        d = newDamage;
+        damage = newDamage;
     }
 }
