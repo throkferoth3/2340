@@ -12,3 +12,9 @@
            the code more comprehensible I changed the variable int d to int damage. Therefore, now it is more clear what
            this variables purpose is in our code. Therefore, I changed all instances of d in the Enemy class and child classes
            to damage. 
+
+- Duplicated Code: There were 3 sections of code that were duplicated in the StartCombat class. It was not only amateur, but it
+           also hurt the flexibility of our code. We were not able to spawn enemies in any other order than the one set in
+           the code block. To fix this, I moved removed the duplicates and placed the block of code further down. I made the
+           differences in each of the sections decided earlier. Our code was much more flexible and no longer had multiple
+           copies of that block of code.

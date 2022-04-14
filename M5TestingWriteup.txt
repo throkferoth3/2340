@@ -13,3 +13,11 @@
 - testAddHealth(): This unit test verifies that addHealth() method is working properly. This implies that if this method is called
   then it will add one health point to the players monument. This test is relevant because it ensures that the correct amount of 
   health is added to the player at the end of the round when called. 
+
+- testCreateInitText(): This test verifies that the initial health text of the enemies is correct. The various enemies have
+  differing healths. This method creates the text that will later be displayed to the player on each enemy. It compares
+  the expected string of text with the actual text to ensure that it matches.
+
+- testCreateDisplay(): This test checks to see if the enemy display consists of a circle with text stacked on top of it.
+  It creates the display with the corresponding method and checks that the child at index 0 is a Circle and the child at
+  index 1 is text.

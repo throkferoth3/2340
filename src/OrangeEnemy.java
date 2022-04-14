@@ -9,7 +9,7 @@ import javafx.scene.text.TextBoundsType;
  */
 public class OrangeEnemy extends Enemy {
     public OrangeEnemy() {
-        damage = 3;
+        damage = 1;
         health = 3;
         getCircle().setFill(Color.ORANGE);
         updateHealth();

@@ -143,8 +143,8 @@ public class UnitTests {
         Enemy p = new PurpleEnemy();
         Enemy y = new YellowEnemy();
         Enemy o = new OrangeEnemy();
-        assertEquals(y.getDamage(), 2);
-        assertEquals(o.getDamage(), 3);
+        assertEquals(y.getDamage(), 1);
+        assertEquals(o.getDamage(), 1);
         assertEquals(p.getDamage(), 1);
     }
 
@@ -197,7 +197,7 @@ public class UnitTests {
         e.addAttacker(t);
         assertTrue(e.getAttackers().contains(t));
     }
-    
+
     @Test(timeout = TIMEOUT)
     public void testInRange() {
         Tower t = new RedTower(1.0, 1.0);
@@ -205,7 +205,7 @@ public class UnitTests {
         boolean error = t.inRange(50,50);
         assertFalse(error);
     }
-    
+
     @Test(timeout = TIMEOUT)
     public void testAddHealth() {
         PlayerInfo.setDifficulty(0);
@@ -219,6 +219,12 @@ public class UnitTests {
     public void testCreateInitText() { // creates the initial text for enemy hp
         Enemy enemy = new OrangeEnemy();
         Text test = enemy.createInitText();
+        assertEquals("" + enemy.getHealth(), test.getText());
+        enemy = new YellowEnemy();
+        test = enemy.createInitText();
+        assertEquals("" + enemy.getHealth(), test.getText());
+        enemy = new PurpleEnemy();
+        test = enemy.createInitText();
         assertEquals("" + enemy.getHealth(), test.getText());
     }
 
