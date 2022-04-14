@@ -199,7 +199,9 @@ public class UnitTests {
     @Test(timeout = TIMEOUT)
     public void testInRange() {
         Tower t = new RedTower(1.0, 1.0);
-        assertFalse(t.inRange(50, 50));
+        t.setPosition(0.0, 0.0);
+        boolean error = t.inRange(50,50);
+        assertFalse(error);
     }
     
     @Test(timeout = TIMEOUT)
