@@ -18,3 +18,5 @@
            the code block. To fix this, I moved removed the duplicates and placed the block of code further down. I made the
            differences in each of the sections decided earlier. Our code was much more flexible and no longer had multiple
            copies of that block of code.
+
+- Object Oriented Abuse: The place tower functionality was previously implemented with a switch statement within the MainGame class. This was because we were focused on making the visuals work rather than getting the logic right, and putting everything in the MainGame class seemed most convienent. To fix this, I created a new placeTower() method in the abstract tower class that handles the logical part of placing towers while leaving the visuals to MainGame. Although the code still abuses a switch statement, it is an improvement over before.

@@ -3,6 +3,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -37,10 +38,15 @@ public class MainGame {
 
     public static void initialize() {
         PlayerInfo.initHealthAndMoney();
+        PlayerInfo.clearEnemies();
         for (int i = center.getChildren().size() - 1; i >= 0; i--) {
             if (center.getChildren().get(i) instanceof Rectangle
                 && ((Rectangle) center.getChildren().get(i)).getHeight() == 30
                 && ((Rectangle) center.getChildren().get(i)).getWidth() == 30) {
+                center.getChildren().remove(center.getChildren().get(i));
+            } else if (center.getChildren().get(i) instanceof Circle
+                && ((Circle) center.getChildren().get(i)).getFill() == Color.RED
+                && ((Circle) center.getChildren().get(i)).getRadius() == 5) {
                 center.getChildren().remove(center.getChildren().get(i));
             }
         }
@@ -111,30 +117,24 @@ public class MainGame {
                             case 0:
                                 Tower redTower = new RedTower(mouseEvent.getX(),
                                         mouseEvent.getY());
-                                ((Rectangle) redTower.getDisplay()).setX(mouseEvent.getX()
-                                        - redTower.getWidth() / 2d);
-                                ((Rectangle) redTower.getDisplay()).setY(mouseEvent.getY()
-                                        - redTower.getHeight() / 2d);
+                                redTower.place(mouseEvent.getX() - redTower.getWidth() / 2d,
+                                        mouseEvent.getY() - redTower.getHeight() / 2d);
                                 center.getChildren().add(redTower.getDisplay());
                                 PlayerInfo.addTower(redTower);
                                 break;
                             case 1:
                                 Tower greenTower = new GreenTower(mouseEvent.getX(),
                                         mouseEvent.getY());
-                                ((Rectangle) greenTower.getDisplay()).setX(mouseEvent.getX()
-                                        - greenTower.getWidth() / 2d);
-                                ((Rectangle) greenTower.getDisplay()).setY(mouseEvent.getY()
-                                        - greenTower.getHeight() / 2d);
+                                greenTower.place(mouseEvent.getX() - greenTower.getWidth() / 2d,
+                                        mouseEvent.getY() - greenTower.getHeight() / 2d);
                                 center.getChildren().add(greenTower.getDisplay());
                                 PlayerInfo.addTower(greenTower);
                                 break;
                             case 2:
                                 Tower blueTower = new BlueTower(mouseEvent.getX(),
                                         mouseEvent.getY());
-                                ((Rectangle) blueTower.getDisplay()).setX(mouseEvent.getX()
-                                        - blueTower.getWidth() / 2d);
-                                ((Rectangle) blueTower.getDisplay()).setY(mouseEvent.getY()
-                                        - blueTower.getHeight() / 2d);
+                                blueTower.place(mouseEvent.getX() - blueTower.getWidth() / 2d,
+                                        mouseEvent.getY() - blueTower.getHeight() / 2d);
                                 center.getChildren().add(blueTower.getDisplay());
                                 PlayerInfo.addTower(blueTower);
                                 break;
@@ -151,7 +151,9 @@ public class MainGame {
     public Scene getScene() {
         return scene;
     }
-    public static HBox getTopUI() { return topUI; }
+    public static HBox getTopUI() {
+        return topUI;
+    }
     public static Boolean getPlacementActive() {
         return placementActive;
     }

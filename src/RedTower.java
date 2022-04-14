@@ -12,6 +12,6 @@ public class RedTower extends Tower {
     }
 
     public boolean inRange(double targetX, double targetY) {
-        return Math.pow(posX - targetX, 2) + Math.pow(posY - targetY, 2) <= range;
+        return Math.pow(posX - targetX, 2) + Math.pow(posY - targetY, 2) <= Math.pow(range, 2);
     }
 }

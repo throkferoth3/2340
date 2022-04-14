@@ -21,3 +21,8 @@
 - testCreateDisplay(): This test checks to see if the enemy display consists of a circle with text stacked on top of it.
   It creates the display with the corresponding method and checks that the child at index 0 is a Circle and the child at
   index 1 is text.
+
+
+- testInRange(): This test verifies that the range calculation for the redTower is working correctly by creating a tower and checking that a value that is out of range is correcly labelled false and a value in range is labelled true.
+
+- testClearEnemies(): This test verifies that the enemy datastructure is properly emptied upon restarting the game. It does this by first adding one of each enemy type and checking the size. It then calls clearEnemies() and makes sure the size is now 0. 

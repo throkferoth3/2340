@@ -1,6 +1,4 @@
-import javafx.scene.Node;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 /**
  * One of the 3 types of enemies. This will be further implemented with variation later on.
