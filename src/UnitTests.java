@@ -202,7 +202,7 @@ public class UnitTests {
     @Test(timeout = TIMEOUT)
     public void testDeleteEnemy() {
         PurpleEnemy p = new PurpleEnemy();
-        p.sethealth(0);
+        p.setHealth(0);
         assertNull(p);
     }
 
