@@ -6,9 +6,9 @@
   is making sure that we are able to add towers to the attackers list when an enemy is attacked. THis test is relevant
   because it verifies an extremely important functionality involved in the combat stages of the game.
   
-- testInRange(): This unit test verifies that inRange() method is working properly. This implies that if the coordinates
-  of the tower in repect to the enemies is out of the set range (50), then it will return false. This test is relevant because
-  it ensures that the tower does not have infinite reach and only shoots in its intended range. 
+- testDeleteEnemy(): This unit test verifies that the enemies are deleted after their health is 0. This is done by checking
+  if the object that is created is now null. This test is relevant because it verifies that the enemies are removed from the 
+  map after they are reduced to 0 health. 
   
 - testAddHealth(): This unit test verifies that addHealth() method is working properly. This implies that if this method is called
   then it will add one health point to the players monument. This test is relevant because it ensures that the correct amount of 
