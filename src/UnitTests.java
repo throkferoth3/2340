@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -199,11 +200,10 @@ public class UnitTests {
     }
 
     @Test(timeout = TIMEOUT)
-    public void testInRange() {
-        Tower t = new RedTower(1.0, 1.0);
-        t.setPosition(0.0, 0.0);
-        boolean error = t.inRange(50,50);
-        assertFalse(error);
+    public void testDeleteEnemy() {
+        PurpleEnemy p = new PurpleEnemy();
+        p.sethealth(0);
+        assertNull(p);
     }
 
     @Test(timeout = TIMEOUT)
