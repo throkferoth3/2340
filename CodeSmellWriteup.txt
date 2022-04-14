@@ -4,3 +4,11 @@
            I fixed this code smell by removing the damage parameter from the method header. Additionally, I edited the
            spawnEnemies method by replacing any references to the old damage parameter with the constant value of 1.
            This allowed the spawnEnemies() method calls to be more concise and readable.
+           
+- Mysterious Name: Within the Enemy class and child classes (i.e. PurpleEnemy, OrangeEnemy, YellowEnemy) there was a 
+           mysterious variable named "d". Since I was the one that wrote it I knew what it represented, but by leaving
+           it in its current state my peers cannot comprehend what that variable represents. I left it there as a place
+           holder, but forgot to change it in the later stages of my code. "d" is meant to represent damage, so to make 
+           the code more comprehensible I changed the variable int d to int damage. Therefore, now it is more clear what
+           this variables purpose is in our code. Therefore, I changed all instances of d in the Enemy class and child classes
+           to damage. 
