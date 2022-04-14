@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
  */
 public class YellowEnemy extends Enemy {
     public YellowEnemy() {
-        d = 5;
+        damage = 5;
         health = 10;
         getDisplay().setFill(Color.YELLOW);
     }
