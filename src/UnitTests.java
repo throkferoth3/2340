@@ -203,8 +203,9 @@ public class UnitTests {
     public void testUpdateHealth() {
         PurpleEnemy p = new PurpleEnemy();
         p.setHealth(0);
-        Text test = p.updateHealth();
-        assertEquals("" + p.getHealth(), test.getText());
+        p.updateHealth();
+        Text test = p.getEnemyHealthText();
+        assertEquals("" + 0, test.getText());
     }
 
     @Test(timeout = TIMEOUT)
