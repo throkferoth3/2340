@@ -164,6 +164,9 @@ public class MainGame {
     public static void updateHealthText() {
         healthText.setText("Health: " + PlayerInfo.getHealth());
     }
+    public static void updateMoneyText() {
+        moneyText.setText("Money: " + PlayerInfo.getMoney());
+    }
     public static Text getInsufficientMoneyText() {
         return insufficientMoneyText;
     }

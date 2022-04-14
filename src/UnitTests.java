@@ -3,10 +3,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotEquals;
 
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -104,9 +106,9 @@ public class UnitTests {
         Enemy p = new PurpleEnemy();
         Enemy y = new YellowEnemy();
         Enemy o = new OrangeEnemy();
-        assertEquals(p.getDisplay().getFill(), Color.PURPLE);
-        assertEquals(y.getDisplay().getFill(), Color.YELLOW);
-        assertEquals(o.getDisplay().getFill(), Color.ORANGE);
+        assertEquals(p.getCircle().getFill(), Color.PURPLE);
+        assertEquals(y.getCircle().getFill(), Color.YELLOW);
+        assertEquals(o.getCircle().getFill(), Color.ORANGE);
     }
     /**
      * M4 unit test to verify that the healths of the different types of enemies
@@ -130,9 +132,9 @@ public class UnitTests {
         Enemy p = new PurpleEnemy();
         Enemy y = new YellowEnemy();
         Enemy o = new OrangeEnemy();
-        assertEquals(y.getHealth(), 10);
-        assertEquals(o.getHealth(), 15);
-        assertEquals(p.getHealth(), 20);
+        assertEquals(y.getHealth(), 2);
+        assertEquals(o.getHealth(), 3);
+        assertEquals(p.getHealth(), 1);
     }
     
     @Test(timeout = TIMEOUT)
@@ -141,9 +143,9 @@ public class UnitTests {
         Enemy p = new PurpleEnemy();
         Enemy y = new YellowEnemy();
         Enemy o = new OrangeEnemy();
-        assertEquals(y.getDamage(), 5);
-        assertEquals(o.getDamage(), 10);
-        assertEquals(p.getDamage(), 15);
+        assertEquals(y.getDamage(), 2);
+        assertEquals(o.getDamage(), 3);
+        assertEquals(p.getDamage(), 1);
     }
 
 
@@ -178,9 +180,9 @@ public class UnitTests {
         Enemy p = new PurpleEnemy();
         Enemy y = new YellowEnemy();
         Enemy o = new OrangeEnemy();
-        assertTrue(p.getDisplay() instanceof Circle);
-        assertTrue(y.getDisplay() instanceof Circle);
-        assertTrue(o.getDisplay() instanceof Circle);
+        assertTrue(p.getCircle() instanceof Circle);
+        assertTrue(y.getCircle() instanceof Circle);
+        assertTrue(o.getCircle() instanceof Circle);
     }
     @Test(timeout = TIMEOUT)
     public void checkAttackersEmpty() {
@@ -211,5 +213,21 @@ public class UnitTests {
         Tower t = new GreenTower(1.0, 1.0);
         t.addHealth();
         assertEquals(21, PlayerInfo.getHealth());
-    }      
+    }
+
+    @Test(timeout = TIMEOUT)
+    public void testCreateInitText() { // creates the initial text for enemy hp
+        Enemy enemy = new OrangeEnemy();
+        Text test = enemy.createInitText();
+        assertEquals("" + enemy.getHealth(), test.getText());
+    }
+
+    @Test(timeout = TIMEOUT)
+    public void testCreateDisplay() { // creates initial enemy display with text inside it
+        Enemy enemy = new OrangeEnemy();
+        StackPane test = enemy.createDisplay();
+        assertTrue(test.getChildren().get(0) instanceof Circle);
+        assertTrue(test.getChildren().get(1) instanceof Text);
+    }
+     
 }
