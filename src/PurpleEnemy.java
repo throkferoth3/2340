@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
  */
 public class PurpleEnemy extends Enemy {
     public PurpleEnemy() {
-        d = 15;
+        damage = 15;
         health = 20;
         getDisplay().setFill(Color.PURPLE);
     }
