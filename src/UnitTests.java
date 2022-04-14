@@ -209,8 +209,8 @@ public class UnitTests {
 
     @Test(timeout = TIMEOUT)
     public void testEnemyHealthIndicator() {
-        Enemy e = new Enemy();
-        Text test = e.getEnemyHealthText();
+        PurpleEnemy p = new PurpleEnemy();
+        Text test = p.getEnemyHealthText();
         assertNotNull(test);
     }
 
