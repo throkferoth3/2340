@@ -201,15 +201,18 @@ public class UnitTests {
     @Test(timeout = TIMEOUT)
     public void testInRange() {
         Tower t = new RedTower(1.0, 1.0);
-        assertFalse(t.inRange(50, 50));
+        t.setPosition(0.0, 0.0);
+        boolean error = t.inRange(50,50);
+        assertFalse(error);
     }
     
     @Test(timeout = TIMEOUT)
     public void testAddHealth() {
-        PlayerInfo.setHealth(5);
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
         Tower t = new GreenTower(1.0, 1.0);
         t.addHealth();
-        assertEquals(6, PlayerInfo.getHealth());
+        assertEquals(21, PlayerInfo.getHealth());
     }
 
     @Test(timeout = TIMEOUT)
@@ -226,4 +229,5 @@ public class UnitTests {
         assertTrue(test.getChildren().get(0) instanceof Circle);
         assertTrue(test.getChildren().get(1) instanceof Text);
     }
+     
 }
