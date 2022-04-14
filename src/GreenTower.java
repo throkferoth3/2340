@@ -9,5 +9,8 @@ public class GreenTower extends Tower {
         display = new Rectangle(height, width);
         display.setFill(Color.GREEN);
     }
-
+    
+    public void addHealth() {
+        PlayerInfo.setHealth(PlayerInfo.getHealth() + 1);
+    }
 }
