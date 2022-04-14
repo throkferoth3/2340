@@ -201,4 +201,12 @@ public class UnitTests {
         Tower t = new RedTower(1.0, 1.0);
         assertFalse(t.inRange(50, 50));
     }
+    
+    @Test(timeout = TIMEOUT)
+    public void testAddHealth() {
+        PlayerInfo.setHealth(5);
+        Tower t = new GreenTower(1.0, 1.0);
+        t.addHealth();
+        assertEquals(6, PlayerInfo.getHealth());
+    }      
 }
