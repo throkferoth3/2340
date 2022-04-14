@@ -195,4 +195,10 @@ public class UnitTests {
         e.addAttacker(t);
         assertTrue(e.getAttackers().contains(t));
     }
+    
+    @Test(timeout = TIMEOUT)
+    public void testInRange() {
+        Tower t = new RedTower(1.0, 1.0);
+        assertFalse(t.inRange(50, 50));
+    }
 }
