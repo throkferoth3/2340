@@ -42,6 +42,10 @@ abstract class Tower {
         posX = x;
         posY = y;
     }
+    public void place(double x, double y) {
+        ((Rectangle) display).setX(x);
+        ((Rectangle) display).setY(y);
+    }
     public boolean isWithin(double x, double y) {
         if (x >= posX - width && x <= posX + width && y <= posY + height && y >= posY - height) {
             return true;

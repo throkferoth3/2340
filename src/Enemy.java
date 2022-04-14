@@ -1,6 +1,6 @@
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.*;
-import javafx.scene.text.Font;
+
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
@@ -47,9 +47,9 @@ abstract class Enemy {
         Text text = new Text("" + getHealth());
         text.setBoundsType(TextBoundsType.VISUAL);
         text.setStyle(
-                "-fx-font-family: \"Times New Roman\";" +
-                        "-fx-font-style: italic;" +
-                        "-fx-font-size: 36px;"
+                "-fx-font-family: \"Times New Roman\";"
+                        + "-fx-font-style: italic;"
+                        + "-fx-font-size: 36px;"
         );
         return text;
     }
@@ -66,7 +66,9 @@ abstract class Enemy {
     public StackPane getDisplay() {
         return display;
     }
-    public Circle getCircle() {return circle;}
+    public Circle getCircle() {
+        return circle;
+    }
     public int getHealth() {
         return health;
     }
@@ -79,6 +81,10 @@ abstract class Enemy {
     public void setDamage(int newDamage) {
         damage = newDamage;
     }
-    public Text getEnemyHealthText() {return text;};
-    public void updateHealth() {text.setText("" + getHealth());}
+    public Text getEnemyHealthText() {
+        return text;
+    }
+    public void updateHealth() {
+        text.setText("" + getHealth());
+    }
 }

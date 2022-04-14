@@ -235,5 +235,26 @@ public class UnitTests {
         assertTrue(test.getChildren().get(0) instanceof Circle);
         assertTrue(test.getChildren().get(1) instanceof Text);
     }
+
+    @Test(timeout = TIMEOUT)
+    public void testInRange() {
+        RedTower testTower = new RedTower(15d, 15d);
+        boolean rangeF = testTower.inRange(100d, 0d);
+        assertFalse(rangeF);
+        boolean rangeT = testTower.inRange(25d, 25d);
+        assertTrue(rangeT);
+    }
+    @Test(timeout = TIMEOUT)
+    public void testClearEnemies() {
+        Enemy e1 = new PurpleEnemy();
+        PlayerInfo.addEnemy(e1);
+        Enemy e2 = new YellowEnemy();
+        PlayerInfo.addEnemy(e2);
+        Enemy e3 = new OrangeEnemy();
+        PlayerInfo.addEnemy(e3);
+        assertEquals(PlayerInfo.getEnemyMap().size(), 3);
+        PlayerInfo.clearEnemies();
+        assertEquals(PlayerInfo.getEnemyMap().size(), 0);
+    }
      
 }

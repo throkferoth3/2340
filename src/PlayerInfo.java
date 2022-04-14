@@ -48,6 +48,12 @@ public class PlayerInfo {
     public static void addTower(Tower t) {
         ownedTowers.add(t);
     }
+    public static void addEnemy(Enemy e) {
+        enemyHashMap.put(e.getId(), e);
+    }
+    public static void clearEnemies() {
+        enemyHashMap.clear();
+    }
 
     public static ArrayList<Tower> getTowerList() {
         return ownedTowers;
