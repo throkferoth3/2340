@@ -5,3 +5,7 @@
 - testAddAttackers(): This unit test verifies that the addAttacker() method is working properly. In other words, it
   is making sure that we are able to add towers to the attackers list when an enemy is attacked. THis test is relevant
   because it verifies an extremely important functionality involved in the combat stages of the game.
+  
+- testInRange(): This unit test verifies that inRange() method is working properly. This implies that if the coordinates
+  of the tower in repect to the enemies is out of the set range (50), then it will return false. This test is relevant because
+  it ensures that the tower does not have infinite reach and only shoots in its intended range. 
