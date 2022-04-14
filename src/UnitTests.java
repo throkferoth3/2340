@@ -204,9 +204,10 @@ public class UnitTests {
     
     @Test(timeout = TIMEOUT)
     public void testAddHealth() {
-        PlayerInfo.setHealth(5);
+        PlayerInfo.setDifficulty(0);
+        PlayerInfo.initHealthAndMoney();
         Tower t = new GreenTower(1.0, 1.0);
         t.addHealth();
-        assertEquals(6, PlayerInfo.getHealth());
+        assertEquals(21, PlayerInfo.getHealth());
     }      
 }
