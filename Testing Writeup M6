@@ -1,0 +1,7 @@
+testIsUpgradedBecomesTrue(): This test checks to make sure that the isUpgraded value for a Tower object becomes true whenever the tower is upgraded. This is important and
+                             relevant to the implementation requirements because the user is not able to upgrade a tower more than once, so letting the system know that a tower
+                             is already upgraded is extremely crucial.
+testStatsChangedAfterUpgrade(): This test is making sure that for each of the different types of towers, their specific stats were changed after being upgraded. For instance,
+                                the test confirms that a RedTower's damage is changed, a BlueTower's slowMultiplier is changed, and a GreenTower's healthIncrement is changed.
+                                This is very relevant to the implementation requirements because the whole point of the upgrade functionality in our tower defense game is to
+                                alter these specific stats.
