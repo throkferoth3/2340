@@ -1,0 +1,4 @@
+Information Expert: An example of the GRASP princple Information Expert can be seen in the upgrade() methods in RedTower.java, BlueTower.java, and GreenTower.java. This code
+                    follows this principle because instead of trying to manually upgrade towers when handling the upgrade button getting pressed in the MainGame class, we are
+                    assigning the upgrade responsibility for each type of tower to their respective tower classes. We are doing this because these classes have the relevant
+                    information, such as damage, slowMultiplier, and healthIncrement, that is necessary to fulfill our upgrade responsibility.
