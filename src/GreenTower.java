@@ -20,4 +20,7 @@ public class GreenTower extends Tower {
         healthIncrement = 2;
         isUpgraded = true;
     }
+    public int getHealthIncrement() {
+        return healthIncrement;
+    }
 }
