@@ -14,6 +14,7 @@ abstract class Enemy {
     protected int id;
     protected int health = 1;
     protected int damage;
+    protected boolean isDead = false;
     protected double x;
     protected double y = Controller.getScreenHeight() / 2d - 100 + 31;
 
@@ -86,5 +87,11 @@ abstract class Enemy {
     }
     public void updateHealth() {
         text.setText("" + getHealth());
+    }
+    public boolean getDead() {
+        return isDead;
+    }
+    public void setDead(boolean isDead) {
+        this.isDead = isDead;
     }
 }

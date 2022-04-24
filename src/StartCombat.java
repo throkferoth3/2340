@@ -41,15 +41,11 @@ public class StartCombat {
 
     public void startCombat() {
         setInCombat(true);
-        int numBlue = 0;
+        double slowRatio = 1;
         for (Tower t : PlayerInfo.getTowerList()) {
             if (t instanceof BlueTower) {
-                numBlue++;
+                slowRatio *= ((BlueTower) t).getSlowMultiplier();
             }
-        }
-        double slowRatio = 1;
-        for (int i = 0; i < numBlue; i++) {
-            slowRatio *= 1.1;
         }
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 0, 1000);
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 1000, 1000);
@@ -64,13 +60,11 @@ public class StartCombat {
             public void run() {
                 Platform.runLater(() -> {
                     setInCombat(false);
-                    int numGreen = 0;
                     for (Tower t : PlayerInfo.getTowerList()) {
                         if (t instanceof GreenTower) {
-                            numGreen++;
+                            ((GreenTower) t).addHealth();
                         }
                     }
-                    PlayerInfo.setHealth(PlayerInfo.getHealth() + numGreen);
                     MainGame.getTopUI().getChildren().add(getDisplay());
                     cancel();
                 });
@@ -137,13 +131,11 @@ public class StartCombat {
                         PlayerInfo.getEnemyMap().remove(enemy.getId());
                         if (PlayerInfo.getEnemyMap().isEmpty()) {
                             setInCombat(false);
-                            int numGreen = 0;
                             for (Tower t : PlayerInfo.getTowerList()) {
                                 if (t instanceof GreenTower) {
-                                    numGreen++;
+                                    ((GreenTower) t).addHealth();
                                 }
                             }
-                            PlayerInfo.setHealth(PlayerInfo.getHealth() + numGreen);
                             MainGame.updateHealthText();
                             MainGame.getTopUI().getChildren().add(getDisplay());
                         }
@@ -188,12 +180,15 @@ public class StartCombat {
                                     });
 
                                     if (e.getHealth() > 0 && !e.getAttackers().contains(t)) {
-                                        e.setHealth(e.getHealth() - 1);
+                                        e.setHealth(e.getHealth() - ((RedTower) t).getDamage());
                                         e.updateHealth();
                                     } else if (e.getHealth() <= 0) {
                                         MainGame.getCenter().getChildren().remove(e.getDisplay());
-                                        PlayerInfo.setMoney(PlayerInfo.getMoney() + 3);
-                                        MainGame.updateMoneyText();
+                                        if (!e.getDead()) {
+                                            PlayerInfo.setMoney(PlayerInfo.getMoney() + 3);
+                                            MainGame.updateMoneyText();
+                                            e.setDead(true);
+                                        }
                                         e.setDamage(0);
                                         arr.add(e.getId());
                                     }

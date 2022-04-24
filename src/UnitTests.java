@@ -256,5 +256,31 @@ public class UnitTests {
         PlayerInfo.clearEnemies();
         assertEquals(PlayerInfo.getEnemyMap().size(), 0);
     }
-     
+    @Test(timeout = TIMEOUT)
+    public void testIsUpgradedBecomesTrue() {
+        Tower r = new RedTower(15d, 15d);
+        r.upgrade();
+        Tower b = new BlueTower(15d, 15d);
+        b.upgrade();
+        Tower g = new GreenTower(15d, 15d);
+        g.upgrade();
+        assertTrue(r.getUpgraded());
+        assertTrue(b.getUpgraded());
+        assertTrue(g.getUpgraded());
+    }
+    @Test(timeout = TIMEOUT)
+    public void testStatsChangedAfterUpgrade() {
+        Tower r = new RedTower(15d, 15d);
+        int initialDamage = ((RedTower) r).getDamage();
+        r.upgrade();
+        Tower b = new BlueTower(15d, 15d);
+        double initialSlowMultiplier = ((BlueTower) b).getSlowMultiplier();
+        b.upgrade();
+        Tower g = new GreenTower(15d, 15d);
+        int initialHealthIncrement = ((GreenTower) g).getHealthIncrement();
+        g.upgrade();
+        assertNotEquals(initialDamage, ((RedTower) r).getDamage());
+        assertNotEquals(initialSlowMultiplier, ((BlueTower) b).getSlowMultiplier());
+        assertNotEquals(initialHealthIncrement, ((GreenTower) g).getHealthIncrement());
+    }
 }
