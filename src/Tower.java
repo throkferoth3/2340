@@ -8,6 +8,8 @@ abstract class Tower {
     protected int height = 30;
     protected double posX;
     protected double posY;
+    protected boolean isUpgraded = false;
+    protected static int upgradeCost = 30;
 
     public Tower(Double x, Double y) {
         posY = y - height / 2d;
@@ -37,6 +39,12 @@ abstract class Tower {
     public double getPosY() {
         return posY;
     }
+    public boolean getUpgraded() {
+        return isUpgraded;
+    }
+    public void setUpgraded(boolean isUpgraded) {
+        this.isUpgraded = isUpgraded;
+    }
 
     public void setPosition(double x, double y) {
         posX = x;
@@ -52,6 +60,10 @@ abstract class Tower {
         }
         return false;
     }
+    public static int getUpgradeCost() {
+        return upgradeCost;
+    }
+    public abstract void upgrade();
 
     //abstract public boolean inRange(double x, double y);
 }

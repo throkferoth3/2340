@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -16,6 +17,7 @@ public class MainGame {
     private static Text healthText;
     private static Text moneyText;
     private static Text insufficientMoneyText;
+    private static Button upgradeButton = new Button("Upgrade");
     private static HBox topUI = new HBox(20);
     private static HBox playerInfoDisplay = new HBox();
     private static HBox shopDisplay = new HBox();
@@ -31,6 +33,7 @@ public class MainGame {
     private StartCombat startCombat = new StartCombat();
 
     private static Boolean placementActive = false;
+    private static Boolean upgradePlacementActive = false;
     private static int currentTowerIndicator = 0;
 
     private Scene scene = new Scene(mainPane,
@@ -70,7 +73,7 @@ public class MainGame {
         insufficientMoneyText = new Text("");
 
         shopDisplay.getChildren().addAll(redShop.getDisplay(),
-                greenShop.getDisplay(), blueShop.getDisplay());
+                greenShop.getDisplay(), blueShop.getDisplay(), upgradeButton);
 
         redShop.getDisplay().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -90,7 +93,6 @@ public class MainGame {
                 blueShop.buyTower();
             }
         });
-
         startCombat.getDisplay().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -104,6 +106,34 @@ public class MainGame {
         shopDisplay.getChildren().add(insufficientMoneyText);
         topUI.getChildren().addAll(shopDisplay, startCombat.getDisplay());
 
+        upgradeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                if (!upgradePlacementActive) {
+                    boolean towerAvailable = false;
+                    for (Tower t : PlayerInfo.getTowerList()) {
+                        if (!t.getUpgraded()) {
+                            towerAvailable = true;
+                        }
+                    }
+                    if (PlayerInfo.getTowerList().size() != 0 && towerAvailable) {
+                        if (PlayerInfo.getMoney() >= Tower.getUpgradeCost()) {
+                            PlayerInfo.setMoney(PlayerInfo.getMoney() - Tower.getUpgradeCost());
+                            updateMoneyText();
+                            upgradePlacementActive = true;
+                        } else {
+                            insufficientMoneyText.setText("   Insufficient funds");
+                            return;
+                        }
+                    } else {
+                        insufficientMoneyText.setText("No towers available to upgrade");
+                        return;
+                    }
+                } else {
+                    insufficientMoneyText.setText("Already upgrading tower");
+                }
+            }
+        });
         center.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -144,6 +174,26 @@ public class MainGame {
                         insufficientMoneyText.setText("");
                         placementActive = false;
                     }
+                } else if (upgradePlacementActive) {
+                    if (!PlayerInfo.validPlacement(mouseEvent.getX(), mouseEvent.getY())) {
+                        Tower chosenTower = new RedTower(10.0, 10.0);
+                        for (Tower t : PlayerInfo.getTowerList()) {
+                            if (t.isWithin(mouseEvent.getX(), mouseEvent.getY())) {
+                                chosenTower = t;
+                            }
+                        }
+                        if (chosenTower.getUpgraded()) {
+                            insufficientMoneyText.setText("Tower is already upgraded");
+                            return;
+                        } else {
+                            chosenTower.upgrade();
+                        }
+                    } else {
+                        insufficientMoneyText.setText("Please select a tower");
+                        return;
+                    }
+                    insufficientMoneyText.setText("");
+                    upgradePlacementActive = false;
                 }
             }
         });
