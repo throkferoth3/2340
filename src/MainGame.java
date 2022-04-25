@@ -99,6 +99,7 @@ public class MainGame {
                 MainGame.getTopUI().getChildren().remove(startCombat.getDisplay());
                 if (!StartCombat.getInCombat()) {
                     startCombat.startCombat();
+                    PlayerInfo.setRoundNumber(PlayerInfo.getRoundNumber() + 1);
                 }
             }
         });

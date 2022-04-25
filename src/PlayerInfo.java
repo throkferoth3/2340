@@ -8,6 +8,7 @@ public class PlayerInfo {
     private static String name;
     private static ArrayList<Tower> ownedTowers = new ArrayList<Tower>();
     private static HashMap<Integer, Enemy> enemyHashMap = new HashMap<>();
+    private static int roundNumber = 1;
 
     public static int getDifficulty() {
         return difficulty;
@@ -33,7 +34,8 @@ public class PlayerInfo {
             Controller.switchToGameOver();
         }
     }
-
+    public static int getRoundNumber() {return roundNumber;}
+    public static void setRoundNumber(int roundNumberNew) {roundNumber = roundNumberNew;}
     public static void takeDamage(int damage) {
         if (PlayerInfo.getHealth() - damage < 0) {
             PlayerInfo.setHealth(0);

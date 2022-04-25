@@ -53,6 +53,9 @@ public class StartCombat {
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio, 1), 3000, 1000);
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 2), 4000, 1000);
         makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 2), 5000, 1000);
+        if (PlayerInfo.getRoundNumber() == 3) {
+            makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 3), 6000, 1000);
+        }
         makeTimer().scheduleAtFixedRate(attackEnemies(), 0, 100);
         TimerTask buttonRespawn = new TimerTask() {
             private Enemy enemy;
@@ -99,6 +102,10 @@ public class StartCombat {
                         break;
                     case 2:
                         enemy = new OrangeEnemy();
+
+                        break;
+                    case 3:
+                        enemy = new FinalBoss();
 
                         break;
                     default:
@@ -185,7 +192,7 @@ public class StartCombat {
                                     } else if (e.getHealth() <= 0) {
                                         MainGame.getCenter().getChildren().remove(e.getDisplay());
                                         if (!e.getDead()) {
-                                            PlayerInfo.setMoney(PlayerInfo.getMoney() + 3);
+                                            PlayerInfo.setMoney(PlayerInfo.getMoney() + 7);
                                             MainGame.updateMoneyText();
                                             e.setDead(true);
                                         }
