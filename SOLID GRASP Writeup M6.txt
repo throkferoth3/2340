@@ -7,3 +7,5 @@ Polymorphism: An example of the GRASP principle, polymorphism, being followed ca
               a normal enemy, so it is the only class that has a setSize() method. This effectively reduced coupling between the different enemies since the other
               enemies would have no use for the setSize() method. If we wanted to add other special behaviors later on, we could easily do so by making new enemies with those behaviors
               or just adding them to the existing types of enemies.
+              
+Open/Closed Principle: An example of the SOLID principle, Open/Closed principle can be seen in the implementation of Tower and its various child classes. This shows this principle because instead of adding to the existing code we created new classes and connected them through inheritance. This allows for the core of the Tower class to not be able to be broken because new functionalities and implementations will be in an extension of that class. We have set up RedTower, YellowTower, and BlueTower which allow for the extension of Tower without directly modifying it, thus allow us to make changes, but avoid unforseen errors in the Tower class itself. 
