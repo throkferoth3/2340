@@ -5,3 +5,9 @@ testStatsChangedAfterUpgrade(): This test is making sure that for each of the di
                                 the test confirms that a RedTower's damage is changed, a BlueTower's slowMultiplier is changed, and a GreenTower's healthIncrement is changed.
                                 This is very relevant to the implementation requirements because the whole point of the upgrade functionality in our tower defense game is to
                                 alter these specific stats.
+testInitFinalBossStats(): This test checks that the boss' initial stats are correct when he spawns. It specifically checks his size, health and damage. The final boss'
+                          size, health, and damage should be greater than the size, health, and damage of the other enemies. It is relevant to the implementation
+                          requirements because the requirements state that the final boss should be visually/descriptively distinct from other enemies.
+testFinalBossRound(): This test checks that the 3rd round is the final boss round. The boss should spawn after 3 rounds. It loops 3 times and sets the round number to the
+                      current iteration of the loop. The method should return false if not at the 3rd round and true if at the 3rd round. This is relevant to the implementation
+                      requirements because the requirements state that the boss should appear after some time playing the game.

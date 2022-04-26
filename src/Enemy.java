@@ -94,4 +94,5 @@ abstract class Enemy {
     public void setDead(boolean isDead) {
         this.isDead = isDead;
     }
+    public double getSize() {return getCircle().getRadius();};
 }

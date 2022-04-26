@@ -1,4 +1,9 @@
-Information Expert: An example of the GRASP princple Information Expert can be seen in the upgrade() methods in RedTower.java, BlueTower.java, and GreenTower.java. This code
+Information Expert: An example of the GRASP principle Information Expert can be seen in the upgrade() methods in RedTower.java, BlueTower.java, and GreenTower.java. This code
                     follows this principle because instead of trying to manually upgrade towers when handling the upgrade button getting pressed in the MainGame class, we are
                     assigning the upgrade responsibility for each type of tower to their respective tower classes. We are doing this because these classes have the relevant
                     information, such as damage, slowMultiplier, and healthIncrement, that is necessary to fulfill our upgrade responsibility.
+Polymorphism: An example of the GRASP principle, polymorphism, being followed can be seen with the enemies. We have an enemy abstract class that OrangeEnemy.java, PurpleEnemy.java,
+              YellowEnemy.java, and FinalBoss.java extend from. These different enemies have different stats and functionalities. For instance, only the final boss is larger than
+              a normal enemy, so it is the only class that has a setSize() method. This effectively reduced coupling between the different enemies since the other
+              enemies would have no use for the setSize() method. If we wanted to add other special behaviors later on, we could easily do so by making new enemies with those behaviors
+              or just adding them to the existing types of enemies.

@@ -27,6 +27,7 @@ public class StartCombat {
     private int counter = 1;
     private Polyline pathLine = new Polyline();
     private static boolean inCombat = false;
+    public static boolean isLastRound = false;
 
     public StartCombat() {
         x = path.getDisplay().getX();
@@ -235,4 +236,10 @@ public class StartCombat {
     public static boolean getInCombat() {
         return inCombat;
     }
+    public static boolean isLastRound() {if (PlayerInfo.getRoundNumber() == 3) {
+        isLastRound = true;
+    } else {
+        isLastRound = false;
+    }
+    return isLastRound;}
 }

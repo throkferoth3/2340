@@ -283,4 +283,22 @@ public class UnitTests {
         assertNotEquals(initialSlowMultiplier, ((BlueTower) b).getSlowMultiplier());
         assertNotEquals(initialHealthIncrement, ((GreenTower) g).getHealthIncrement());
     }
+    @Test(timeout = TIMEOUT)
+    public void testInitFinalBossStats() {
+        Enemy enemy = new FinalBoss();
+        assertEquals(5, enemy.getDamage());
+        assertEquals(5, enemy.getHealth());
+        assertEquals(25, (int) enemy.getSize());
+    }
+    @Test(timeout = TIMEOUT)
+    public void testFinalBossRound() {
+        for (int i = 1; i <= 3; i++) {
+            PlayerInfo.setRoundNumber(i);
+            if (i == 3) {
+                assertTrue(StartCombat.isLastRound());
+            } else {
+                assertFalse(StartCombat.isLastRound());
+            }
+        }
+    }
 }
