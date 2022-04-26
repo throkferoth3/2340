@@ -75,12 +75,17 @@ public class Controller extends Application {
      */
     public static void switchToGame() {
         window.setScene(gameScreen);
+        PlayerInfo.setIsAlive(true);
+        PlayerInfo.resetRounds();
     }
     public static void switchToGameOver() {
-        window.setScene((gameOverScreen));
+        window.setScene(gameOverScreen);
+        GameOverScreen.updateStats();
+        PlayerInfo.setIsAlive(false);
     };
     public static void switchToVictory() {
         window.setScene(victoryScreen);
+        VictoryScreen.updateStats();
     }
     public static int getScreenHeight() {
         return SCREEN_HEIGHT;

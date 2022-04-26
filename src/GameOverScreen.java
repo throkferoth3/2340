@@ -19,6 +19,9 @@ public class GameOverScreen {
     private Text gameOverText = new Text("GAME OVER");
     private Text consolingText = new Text("Better luck next time");
     private Button retryButton = new Button("Restart");
+    private static Text stat1 = new Text("stat1");
+    private static Text stat2 = new Text("stat2");
+    private static Text stat3 = new Text("stat3");
 
     public GameOverScreen() {
         retryButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -30,8 +33,16 @@ public class GameOverScreen {
             }
         });
         top.setAlignment(Pos.CENTER);
-        top.getChildren().addAll(gameOverText, consolingText);
+        top.getChildren().addAll(gameOverText, consolingText, stat1, stat2, stat3);
         mainPane.setTop(top);
         mainPane.setCenter(retryButton);
+    }
+    public static void updateStats() {
+        if (!PlayerInfo.getIsAlive()) {
+            return;
+        }
+        stat1.setText("Damage Taken: " + PlayerInfo.getDamageTaken() + 1);
+        stat2.setText("Upgrades Purchased: " + PlayerInfo.getUpgradesPurchased());
+        stat3.setText("Towers Placed: " + PlayerInfo.getTowersPlaced());
     }
 }

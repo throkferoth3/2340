@@ -9,6 +9,7 @@ public class PlayerInfo {
     private static ArrayList<Tower> ownedTowers = new ArrayList<Tower>();
     private static HashMap<Integer, Enemy> enemyHashMap = new HashMap<>();
     private static int roundNumber = 1;
+    private static boolean isAlive;
 
     private static int damageTaken = 0;
     private static int upgradesPurchased = 0;
@@ -25,7 +26,12 @@ public class PlayerInfo {
     public static int getTowersPlaced() {
         return towersPlaced;
     }
-
+    public static void setIsAlive(boolean b) {
+        isAlive = b;
+    }
+    public static boolean getIsAlive() {
+        return isAlive;
+    }
     public static int getDifficulty() {
         return difficulty;
     }
@@ -120,5 +126,8 @@ public class PlayerInfo {
         damageTaken = 0;
         towersPlaced = 0;
         upgradesPurchased = 0;
+    }
+    public static void resetRounds() {
+        roundNumber = 1;
     }
 }

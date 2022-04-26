@@ -37,6 +37,9 @@ public class VictoryScreen {
         mainPane.setCenter(retryButton);
     }
     public static void updateStats() {
+        if (!PlayerInfo.getIsAlive()) {
+            return;
+        }
         stat1.setText("Damage Taken: " + PlayerInfo.getDamageTaken());
         stat2.setText("Upgrades Purchased: " + PlayerInfo.getUpgradesPurchased());
         stat3.setText("Towers Placed: " + PlayerInfo.getTowersPlaced());
