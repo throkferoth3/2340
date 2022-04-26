@@ -67,6 +67,8 @@ public class Controller extends Application {
      */
     public static void switchToWelcome() {
         window.setScene(welcomeScreen);
+        InitialConfig.reset();
+        PlayerInfo.resetStats();
     }
 
     /**

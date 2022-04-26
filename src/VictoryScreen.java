@@ -26,9 +26,7 @@ public class VictoryScreen {
         retryButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                InitialConfig.reset();
                 Controller.switchToWelcome();
-                PlayerInfo.resetStats();
             }
         });
         top.setAlignment(Pos.CENTER);

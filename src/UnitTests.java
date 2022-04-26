@@ -301,4 +301,29 @@ public class UnitTests {
             }
         }
     }
+    @Test(timeout = TIMEOUT)
+    public void testUpgradeTracking() {
+        Tower r = new RedTower(0d, 0d);
+        Tower b = new BlueTower(0d, 0d);
+        Tower g = new GreenTower(0d, 0d);
+        assertEquals(PlayerInfo.getUpgradesPurchased(), 0);
+        r.upgrade();
+        b.upgrade();
+        g.upgrade();
+        assertEquals(PlayerInfo.getUpgradesPurchased(), 3);
+    }
+    @Test(timeout = TIMEOUT)
+    public void testStatReset() {
+        Tower t = new RedTower(0d, 0d);
+        PlayerInfo.addTower(t);
+        PlayerInfo.setDamageTaken(5);
+        t.upgrade();
+        assertEquals(PlayerInfo.getTowersPlaced(), 1);
+        assertEquals(PlayerInfo.getUpgradesPurchased(), 1);
+        assertEquals(PlayerInfo.getDamageTaken(), 5);
+        PlayerInfo.resetStats();
+        assertEquals(PlayerInfo.getTowersPlaced(), 0);
+        assertEquals(PlayerInfo.getUpgradesPurchased(), 0);
+        assertEquals(PlayerInfo.getDamageTaken(), 0);
+    }
 }

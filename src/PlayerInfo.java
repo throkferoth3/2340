@@ -17,6 +17,10 @@ public class PlayerInfo {
     public static int getDamageTaken() {
         return damageTaken;
     }
+    public static void setDamageTaken(int d) {
+        damageTaken = d;
+    }
+
     public static int getUpgradesPurchased() {
         return upgradesPurchased;
     }
