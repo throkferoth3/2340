@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-public class GameOverScreen {
+public class VictoryScreen {
     public Scene getScene() {
         return scene;
     }
@@ -16,11 +16,13 @@ public class GameOverScreen {
             Controller.getScreenHeight());
     private int spacing = 10;
     private VBox top = new VBox(spacing);
-    private Text gameOverText = new Text("GAME OVER");
-    private Text consolingText = new Text("Better luck next time");
+    private Text victoryText = new Text("Victory!");
+    private static Text stat1 = new Text("stat1");
+    private static Text stat2 = new Text("stat2");
+    private static Text stat3 = new Text("stat3");
     private Button retryButton = new Button("Restart");
 
-    public GameOverScreen() {
+    public VictoryScreen() {
         retryButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -30,8 +32,14 @@ public class GameOverScreen {
             }
         });
         top.setAlignment(Pos.CENTER);
-        top.getChildren().addAll(gameOverText, consolingText);
+        top.getChildren().addAll(victoryText, stat1, stat2, stat3);
         mainPane.setTop(top);
         mainPane.setCenter(retryButton);
     }
+    public static void updateStats() {
+        stat1.setText("Damage Taken: " + PlayerInfo.getDamageTaken());
+        stat2.setText("Upgrades Purchased: " + PlayerInfo.getUpgradesPurchased());
+        stat3.setText("Towers Placed: " + PlayerInfo.getTowersPlaced());
+    }
+
 }

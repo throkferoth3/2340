@@ -16,6 +16,7 @@ public class BlueTower extends Tower {
         display.setFill(Color.DARKBLUE);
         slowMultiplier = 1.2;
         isUpgraded = true;
+        PlayerInfo.incrementUpgradesPurchased();
     }
     public double getSlowMultiplier() {
         return slowMultiplier;

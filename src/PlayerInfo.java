@@ -10,6 +10,22 @@ public class PlayerInfo {
     private static HashMap<Integer, Enemy> enemyHashMap = new HashMap<>();
     private static int roundNumber = 1;
 
+    private static int damageTaken = 0;
+    private static int upgradesPurchased = 0;
+    private static int towersPlaced = 0;
+    public static int getDamageTaken() {
+        return damageTaken;
+    }
+    public static int getUpgradesPurchased() {
+        return upgradesPurchased;
+    }
+    public static void incrementUpgradesPurchased() {
+        upgradesPurchased++;
+    }
+    public static int getTowersPlaced() {
+        return towersPlaced;
+    }
+
     public static int getDifficulty() {
         return difficulty;
     }
@@ -42,6 +58,7 @@ public class PlayerInfo {
         } else {
             PlayerInfo.setHealth(PlayerInfo.getHealth() - damage);
         }
+        damageTaken += damage;
     }
 
     public static void setName(String n) {
@@ -49,6 +66,7 @@ public class PlayerInfo {
     }
     public static void addTower(Tower t) {
         ownedTowers.add(t);
+        towersPlaced++;
     }
     public static void addEnemy(Enemy e) {
         enemyHashMap.put(e.getId(), e);
@@ -97,5 +115,10 @@ public class PlayerInfo {
             }
         }
         return true;
+    }
+    public static void resetStats() {
+        damageTaken = 0;
+        towersPlaced = 0;
+        upgradesPurchased = 0;
     }
 }

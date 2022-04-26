@@ -47,12 +47,18 @@ public class StartCombat {
                 slowRatio *= ((BlueTower) t).getSlowMultiplier();
             }
         }
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 0, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio, 0), 1000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio, 1), 2000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio, 1), 3000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 2), 4000, 1000);
-        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 2), 5000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio,
+                0), 0, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 5 * slowRatio,
+                0), 1000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio,
+                1), 2000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 7 * slowRatio,
+                1), 3000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio,
+                2), 4000, 1000);
+        makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio,
+                2), 5000, 1000);
         if (PlayerInfo.getRoundNumber() == 3) {
             makeTimer().scheduleAtFixedRate(spawnEnemies(1, 9 * slowRatio, 3), 6000, 1000);
         }
@@ -133,6 +139,9 @@ public class StartCombat {
                         MainGame.getCenter().getChildren().remove(enemyDisplay);
                         if (enemy.getHealth() > 0) {
                             PlayerInfo.takeDamage(enemy.getDamage());
+                            if (enemy instanceof FinalBoss) {
+                                Controller.switchToGameOver();
+                            }
                         }
                         MainGame.updateHealthText();
                         PlayerInfo.getEnemyMap().remove(enemy.getId());
@@ -195,6 +204,10 @@ public class StartCombat {
                                             PlayerInfo.setMoney(PlayerInfo.getMoney() + 7);
                                             MainGame.updateMoneyText();
                                             e.setDead(true);
+                                            if (e instanceof FinalBoss) {
+                                                VictoryScreen.updateStats();
+                                                Controller.switchToVictory();
+                                            }
                                         }
                                         e.setDamage(0);
                                         arr.add(e.getId());

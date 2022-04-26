@@ -19,6 +19,7 @@ public class GreenTower extends Tower {
         display.setFill(Color.DARKGREEN);
         healthIncrement = 2;
         isUpgraded = true;
+        PlayerInfo.incrementUpgradesPurchased();
     }
     public int getHealthIncrement() {
         return healthIncrement;

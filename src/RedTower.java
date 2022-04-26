@@ -24,5 +24,6 @@ public class RedTower extends Tower {
         display.setFill(Color.DARKRED);
         damage++;
         isUpgraded = true;
+        PlayerInfo.incrementUpgradesPurchased();
     }
 }

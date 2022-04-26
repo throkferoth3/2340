@@ -13,6 +13,7 @@ public class Controller extends Application {
     private static Scene configScreen;
     private static Scene gameScreen;
     private static Scene gameOverScreen;
+    private static Scene victoryScreen;
 
     private static int difficulty;
     private static String name;
@@ -36,6 +37,8 @@ public class Controller extends Application {
         gameScreen = mainGame.getScene();
         GameOverScreen gameOver = new GameOverScreen();
         gameOverScreen = gameOver.getScene();
+        VictoryScreen victory = new VictoryScreen();
+        victoryScreen = victory.getScene();
 
         window.setTitle("Game Title");
         window.setScene(welcomeScreen);
@@ -76,6 +79,9 @@ public class Controller extends Application {
     public static void switchToGameOver() {
         window.setScene((gameOverScreen));
     };
+    public static void switchToVictory() {
+        window.setScene(victoryScreen);
+    }
     public static int getScreenHeight() {
         return SCREEN_HEIGHT;
     }
