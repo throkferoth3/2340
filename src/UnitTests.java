@@ -342,8 +342,8 @@ public class UnitTests {
         PlayerInfo.setDifficulty(0);
         PlayerInfo.initHealthAndMoney();
         Tower g = new GreenTower(1.0, 1.0);
-        (GreenTower)g.upgrade();
-        (GreenTower)g.addHealth();
+        ((GreenTower)g).upgrade();
+        ((GreenTower)g).addHealth();
         assertEquals(22, PlayerInfo.getHealth());
     }
 }
