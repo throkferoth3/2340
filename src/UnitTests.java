@@ -338,11 +338,12 @@ public class UnitTests {
         assertTrue(boss.getDamage() > o.getDamage());
     }
     @Test(timeout = TIMEOUT)
-    public void testGreenTowerAddHealth() {
+    public void testGreenTowerAddHealthUpgrade() {
         PlayerInfo.setDifficulty(0);
         PlayerInfo.initHealthAndMoney();
         Tower g = new GreenTower(1.0, 1.0);
+        g.upgrade();
         g.addHealth();
-        assertEquals(21, PlayerInfo.getHealth());
+        assertEquals(22, PlayerInfo.getHealth());
     }
 }
