@@ -326,4 +326,15 @@ public class UnitTests {
         assertEquals(PlayerInfo.getUpgradesPurchased(), 0);
         assertEquals(PlayerInfo.getDamageTaken(), 0);
     }
+    @Test(timeout = TIMEOUT)
+    public void testBossIsHarderThanEnemy() {
+        Enemy boss = new FinalBoss();
+        Enemy p = new PurpleEnemy();
+        Enemy y = new YellowEnemy();
+        Enemy o = new OrangeEnemy();
+        
+        assertTrue(boss.getDamage() > p.getDamage());
+        assertTrue(boss.getDamage() > y.getDamage());
+        assertTrue(boss.getDamage() > o.getDamage());
+    }
 }
