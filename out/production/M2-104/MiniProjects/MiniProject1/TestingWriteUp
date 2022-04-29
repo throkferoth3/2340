@@ -1,0 +1,5 @@
+For the testing process, we first compared the string output from getCost() and getDescription() with the first
+example string output in the final exam description. In order to get the exact string output, we had to combine
+the 2 strings from getCost() and get Description with the " $" string in between. Then we used the wrapper classes
+to create a double vanilla scoop of ice cream with sprinkles and hot fudge, and then we compared the output with the
+example to check if they were the same.
