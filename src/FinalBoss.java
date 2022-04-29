@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class FinalBoss extends Enemy{
+public class FinalBoss extends Enemy {
     public FinalBoss() {
         damage = 5;
         health = 5;

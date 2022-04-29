@@ -1,0 +1,6 @@
+For Mini Project 3, I decided to create my implementation using the Composite Design Pattern. There are a few reasons
+why I chose this pattern. First of all, I wanted to treat a group of Employee objects all in a similar way as a group
+of objects, and this idea is a core principle of the Composite Pattern. In other words, I wanted to create an
+Employee class that contains a group of Employee objects, in this case its "children" (subordinates). Additionally, the
+Composite Design Pattern composes objects in a tree structure, which works really well with the tree hierarchy presented
+for the software company.
