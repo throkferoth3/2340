@@ -10,5 +10,8 @@ public class MiniProject1Demo {
 
         IceCream iceCream2 = new Caramel(new Caramel(new Chocolate(2)));
         System.out.println(iceCream2.getDescription() + " $" + iceCream2.cost());
+
+        IceCream iceCream3 = new Vanilla(1);
+        System.out.println(iceCream3.getDescription() + " $" + iceCream3.cost());
     }
 }

@@ -7,7 +7,11 @@ public class Chocolate implements IceCream {
     private int scoops = 0;
 
     public Chocolate(int numOfScoops) {
-        scoops = numOfScoops;
+        if (numOfScoops == 1  || numOfScoops == 2) {
+            scoops = numOfScoops;
+        } else {
+            throw new IllegalArgumentException("Please enter 1 or 2 scoops");
+        }
     }
 
     public BigDecimal cost() {
