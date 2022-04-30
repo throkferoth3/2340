@@ -1,0 +1,4 @@
+We decided to use the Factory design pattern for this project. The computers have similar processes to be built,
+but can be made by different manufacturers. This allows us to have the different manufacturers which extend the
+Manufacturer abstract class decide which Computer class to create. Therefore, we follow DIP as all dependencies
+are to the abstract Manufacturer and Computer classes rather than to any concrete, specific manufacturer or computer.

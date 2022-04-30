@@ -1,6 +1,5 @@
 package MiniProjects.MiniProject2;
 
-import java.util.Locale;
 
 abstract public class Manufacturer {
     abstract Computer createComputer(String type);
