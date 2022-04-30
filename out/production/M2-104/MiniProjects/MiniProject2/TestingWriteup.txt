@@ -1,0 +1,12 @@
+testInvalidType: This test creates a manufacturer and tries to have it make a computer with a type that is not a
+laptop, workstation, or server. It then checks that the computer is not made and the method returns null. This test
+is important because the manufacturers should only be able to create computers of types that have been implemented.
+
+testCustomer: This test creates a manufacturer and places an order. Then, it checks that the computer's owner matches
+who placed the order. This test is important to make sure the computers are being assigned to the right customers.
+
+testType: This test creates a manufacturer and places an order. Then, it checks that the computer's type matches
+the type that was ordered. This test ensures that the correct type of computer is made.
+
+testManufacturer: This test creates a manufacturer and places an order. Then, it checks that the computer's manufacturer
+matches where it was ordered from. This test ensures that the computer is made by the correct manufacturer.

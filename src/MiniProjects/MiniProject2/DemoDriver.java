@@ -9,7 +9,5 @@ public class DemoDriver {
         dellis.orderComputer("Workstation", "Micheal");
         hpi.orderComputer("Server", "Hanna");
         lenovoi.orderComputer("Laptop", "Lenny");
-
-        hpi.orderComputer("Workstation", "Joe");
     }
 }
