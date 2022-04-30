@@ -29,6 +29,5 @@ public class UnitTests {
     public void singleChocolateManyToppings() {
         IceCream iceCream = new WhippedCream(new Caramel(new WhippedCream(new Sprinkles(new Sprinkles(new Chocolate(1))))));
         assertEquals("A single scoop of chocolate ice cream, sprinkles, sprinkles, whipped cream, caramel, whipped cream $6.26", iceCream.getDescription() + " $" + iceCream.cost());
-
     }
 }
